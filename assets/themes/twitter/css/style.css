@@ -5,10 +5,10 @@ html, body {
 .navbar {
   margin-bottom: 0;
 }
-.container > footer {
+.container > footer, .container-fluid > footer {
   margin-top: 20px;
 }
-.container > footer p {
+.container > footer p, .container-fluid > footer p {
   text-align: center; /* center align it with the container */
 }
 
