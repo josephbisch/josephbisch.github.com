@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>{{ page.title }}</title>
+    <title>Joseph Bisch - {{ page.title }}</title>
     {% if page.description %}<meta name="description" content="{{ page.description }}">{% endif %}
     <meta name="author" content="{{ site.author.name }}">
 
@@ -29,8 +29,13 @@
     <div class="navbar">
       <div class="navbar-inner">
         <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
           <a class="brand" href="{{ HOME_PATH }}">{{ site.title }}</a>
-          <div class="nav-collapse">
+          <div class="nav-collapse collapse">
             <ul class="nav">
               {% assign pages_list = site.pages %}
               {% assign group = 'navigation' %}
@@ -41,15 +46,16 @@
       </div>
     </div>
 
-    <div class="container">
+    <div class="container-fluid">
 
       <div class="content">
         {{ content }}
       </div>
 
       <footer>
-        <p>&copy; {{ site.author.name }} 2012 
-          with <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+        <p>&copy; {{ site.author.name }} 2012</p> 
+        <p>
+          Made with <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
           and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
         </p>
       </footer>
