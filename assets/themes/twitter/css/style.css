@@ -5,6 +5,9 @@ html, body {
 .navbar {
   margin-bottom: 0;
 }
+.navbar .container-fluid {
+  margin: 0;
+}
 .container > footer, .container-fluid > footer {
   margin-top: 20px;
 }
