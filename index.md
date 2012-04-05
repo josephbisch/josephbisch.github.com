@@ -5,11 +5,9 @@ tagline:
 ---
 {% include JB/setup %}
 
-Read [Jekyll Quick Start](http://jekyllbootstrap.com/usage/jekyll-quick-start.html)
-
-Complete usage and documentation available at: [Jekyll Bootstrap](http://jekyllbootstrap.com)
-
-Coming soon, the website of Joseph Bisch
+<div class="row-fluid">
+  <div class="span4"><a href="http://github.com/josephbisch">Fork me on GitHub</a></div>
+</div>
     
 ## Posts
 
