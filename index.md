@@ -13,7 +13,7 @@ tagline:
   </div>
   <div class="span4">
     <h2>My Projects</h2>
-      <p>See some of the projects I am working on at <a href="projects">my projects</a>.</p>
+      <p>See some of the projects I am working on at <a href="projects.html">my projects</a>.</p>
   </div>
 </div>
 

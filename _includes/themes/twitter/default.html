@@ -41,8 +41,8 @@
           <a class="brand" href="{{ HOME_PATH }}">{{ site.title }}</a>
           <div class="nav-collapse">
             <ul class="nav">
-              {% assign pages_list = site.pages %}
-              {% assign group = 'navigation' %}
+              {% assign pages_list = custom %}
+              {% assign show = 'true' %}
               {% include JB/pages_list %}
               <li class="divider-vertical"></li>
               <li>
@@ -67,7 +67,7 @@
         {{ content }}
       </div>
 
-      <footer>
+<!--      <footer>
         <p>&copy; {{ site.author.name }} 2013</p> 
         <p>
           Made with <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
@@ -76,7 +76,7 @@
         <p>
           Uses icons from <a href="http://www.wpzoom.com/wpzoom/500-free-icons-wpzoom-social-networking-icon-set/" target="_blank">WPZOOM</a>
         </p>
-      </footer>
+      </footer> -->
 
     </div> <!-- /container -->
 
