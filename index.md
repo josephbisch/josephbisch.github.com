@@ -12,8 +12,8 @@ tagline:
       <p><a href="http://www.newhaven.edu/">University of New Haven</a> is located in West Haven, CT.</p>
   </div>
   <div class="span4">
-    <h2>Do you code?</h2>
-      <p>So do I. You can <a href="http://github.com/josephbisch">fork me on GitHub</a>.</p>
+    <h2>My Projects</h2>
+      <p>See some of the projects I am working on at <a href="projects">my projects</a>.</p>
   </div>
 </div>
 
