@@ -1,9 +1,10 @@
+<!DOCTYPE html>
 <html>
 <head>
   <title>Debian Metrics Portal JavaScript Demo</title>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-  <script src="jquery.flot.js"></script>
-  <script src="jquery.flot.time.js"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+  <script type="text/javascript" src="jquery.flot.js"></script>
+  <script type="text/javascript" src="jquery.flot.time.js"></script>
   <script type="text/javascript">
     var plot;
     $(function() {
@@ -41,8 +42,8 @@
 </head>
 <body>
   <div id="placeholder" style="width:600px;height:300px;float:left"></div>
-  <div id="legendholder" sytle="float:left"></div>
+  <div id="legendholder" style="float:left"></div>
   <p>Start: <input type="text" id="start" onchange="setAxis(this)"></p>
   <p>End: <input type="text" id="end" onchange="setAxis(this)"></p>
-</body
+</body>
 </html>
