@@ -1,6 +1,8 @@
 ---
 layout: post
 title: A Summer of Code
+tags:
+- debian
 ---
 
 Yesterday I found out that I was accepted into the Google Summer of Code program. I was accepted by Debian and will be working on a Metrics Portal. You can [view the announcement on the Debian blog](http://bits.debian.org/2014/04/welcome-gsoc-students-2014.html).
