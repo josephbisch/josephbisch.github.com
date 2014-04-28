@@ -112,31 +112,42 @@
   <body>
 
     <!-- Primary Index -->
-	<p><br><br>Dumped on 2014-04-26</p>
+	<p><br><br>Dumped on 2014-04-28</p>
 <h1><a name="index">Index of database - debmetrics</a></h1>
 <ul>
     
+    <li><a name="metrics.schema">metrics</a></li><ul>
+    	<li><a href="#metrics.table.rc-bug-count">rc_bug_count</a></li><li><a href="#metrics.table.releases">releases</a></li><li><a href="#metrics.table.releases-count">releases_count</a></li><li><a href="#metrics.table.sources-count">sources_count</a></li>
+  	
+    </ul>
+    
     <li><a name="public.schema">public</a></li><ul>
-    	<li><a href="#public.table.sources-count">sources_count</a></li>
+    	<li><a href="#public.table.alembic-version">alembic_version</a></li>
   	
     </ul>
     
 </ul>
 
     <!-- Schema Creation -->
-    <!-- publicpublic -->
+    <!-- metricsmetrics -->
+
+		
+		<hr>
+		<h1>Schema metrics</h1>
+		
 
 		
 		
         <hr>
 		<h2>Table:
-			<a name="public.table.sources-count">sources_count</a>
+			
+			<a href="#metrics.schema">metrics</a>.<a name="metrics.table.rc-bug-count">rc_bug_count</a>
 		</h2>
         
 
 
         <table width="100%" cellspacing="0" cellpadding="3">
-                <caption>sources_count Structure</caption>
+                <caption>metrics.rc_bug_count Structure</caption>
                 <tr>
                 <th>F-Key</th>
                 <th>Name</th>
@@ -171,7 +182,7 @@
 				<td>
                 
                 </td>
-            	<td>vcs_arch</td>
+            	<td>rc_bugs</td>
             	<td>integer</td>
                 <td><i>
 				
@@ -187,7 +198,7 @@
 				<td>
                 
                 </td>
-            	<td>vcs_bzr</td>
+            	<td>with_patch</td>
             	<td>integer</td>
                 <td><i>
 				
@@ -203,7 +214,7 @@
 				<td>
                 
                 </td>
-            	<td>vcs_cvs</td>
+            	<td>with_fix</td>
             	<td>integer</td>
                 <td><i>
 				
@@ -219,7 +230,7 @@
 				<td>
                 
                 </td>
-            	<td>vcs_darcs</td>
+            	<td>ignored</td>
             	<td>integer</td>
                 <td><i>
 				
@@ -235,7 +246,7 @@
 				<td>
                 
                 </td>
-            	<td>vcs_git</td>
+            	<td>concern_current_stable</td>
             	<td>integer</td>
                 <td><i>
 				
@@ -251,7 +262,225 @@
 				<td>
                 
                 </td>
-            	<td>vcs_hg</td>
+            	<td>concern_next_release</td>
+            	<td>integer</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+        </table>
+
+        <!-- Inherits -->
+		
+
+		
+		
+		
+
+        <!-- Constraint List -->
+		
+
+        <!-- Foreign Key Discovery -->
+		
+
+    <!-- Indexes -->
+    
+
+	<!-- View Definition -->
+	
+
+	<!-- List off permissions -->
+	
+
+	<p>
+		<a href="#index">Index</a> -
+		<a href="#metrics.schema">Schema metrics</a>
+    </p>
+	
+        <hr>
+		<h2>Table:
+			
+			<a href="#metrics.schema">metrics</a>.<a name="metrics.table.releases">releases</a>
+		</h2>
+        
+
+
+        <table width="100%" cellspacing="0" cellpadding="3">
+                <caption>metrics.releases Structure</caption>
+                <tr>
+                <th>F-Key</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                  
+                
+                </td>
+            	<td>ts</td>
+            	<td>timestamp without time zone</td>
+                <td><i>
+				
+					PRIMARY KEY
+					
+
+					
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>name</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>release_date</td>
+            	<td>date</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>release_version</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+        </table>
+
+        <!-- Inherits -->
+		
+
+		
+		
+		
+
+        <!-- Constraint List -->
+		
+
+        <!-- Foreign Key Discovery -->
+		
+
+    <!-- Indexes -->
+    
+
+	<!-- View Definition -->
+	
+
+	<!-- List off permissions -->
+	
+
+	<p>
+		<a href="#index">Index</a> -
+		<a href="#metrics.schema">Schema metrics</a>
+    </p>
+	
+        <hr>
+		<h2>Table:
+			
+			<a href="#metrics.schema">metrics</a>.<a name="metrics.table.releases-count">releases_count</a>
+		</h2>
+        
+
+
+        <table width="100%" cellspacing="0" cellpadding="3">
+                <caption>metrics.releases_count Structure</caption>
+                <tr>
+                <th>F-Key</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                  
+                
+                </td>
+            	<td>ts</td>
+            	<td>timestamp without time zone</td>
+                <td><i>
+				
+					PRIMARY KEY
+					
+
+					
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>name</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>souce_files</td>
             	<td>integer</td>
                 <td><i>
 				
@@ -267,7 +496,7 @@
 				<td>
                 
                 </td>
-            	<td>vcs_mtn</td>
+            	<td>source_packages</td>
             	<td>integer</td>
                 <td><i>
 				
@@ -283,7 +512,7 @@
 				<td>
                 
                 </td>
-            	<td>vcs_svn</td>
+            	<td>disk_usage</td>
             	<td>integer</td>
                 <td><i>
 				
@@ -299,7 +528,7 @@
 				<td>
                 
                 </td>
-            	<td>format_3native</td>
+            	<td>ctags</td>
             	<td>integer</td>
                 <td><i>
 				
@@ -315,12 +544,318 @@
 				<td>
                 
                 </td>
-            	<td>format_3quilt</td>
+            	<td>sloc</td>
             	<td>integer</td>
                 <td><i>
 				
 
 				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+        </table>
+
+        <!-- Inherits -->
+		
+
+		
+		
+		
+
+        <!-- Constraint List -->
+		
+
+        <!-- Foreign Key Discovery -->
+		
+
+    <!-- Indexes -->
+    
+
+	<!-- View Definition -->
+	
+
+	<!-- List off permissions -->
+	
+
+	<p>
+		<a href="#index">Index</a> -
+		<a href="#metrics.schema">Schema metrics</a>
+    </p>
+	
+        <hr>
+		<h2>Table:
+			
+			<a href="#metrics.schema">metrics</a>.<a name="metrics.table.sources-count">sources_count</a>
+		</h2>
+        
+
+
+        <table width="100%" cellspacing="0" cellpadding="3">
+                <caption>metrics.sources_count Structure</caption>
+                <tr>
+                <th>F-Key</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                  
+                
+                </td>
+            	<td>ts</td>
+            	<td>timestamp without time zone</td>
+                <td><i>
+				
+					PRIMARY KEY
+					
+
+					
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>arch</td>
+            	<td>integer</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>bzr</td>
+            	<td>integer</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>cvs</td>
+            	<td>integer</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>darcs</td>
+            	<td>integer</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>git</td>
+            	<td>integer</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>hg</td>
+            	<td>integer</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>mtn</td>
+            	<td>integer</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>svn</td>
+            	<td>integer</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>total</td>
+            	<td>integer</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>using_vcs</td>
+            	<td>integer</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+        </table>
+
+        <!-- Inherits -->
+		
+
+		
+		
+		
+
+        <!-- Constraint List -->
+		
+
+        <!-- Foreign Key Discovery -->
+		
+
+    <!-- Indexes -->
+    
+
+	<!-- View Definition -->
+	
+
+	<!-- List off permissions -->
+	
+
+	<p>
+		<a href="#index">Index</a> -
+		<a href="#metrics.schema">Schema metrics</a>
+    </p>
+	
+
+	<!-- We've gone through the table structure, now lets take a look at user functions -->
+	
+
+<!-- publicpublic -->
+
+		
+		<hr>
+		<h1>Schema public</h1>
+		
+			<p>standard public schema</p>
+		
+
+		
+		
+        <hr>
+		<h2>Table:
+			
+			<a href="#public.schema">public</a>.<a name="public.table.alembic-version">alembic_version</a>
+		</h2>
+        
+
+
+        <table width="100%" cellspacing="0" cellpadding="3">
+                <caption>public.alembic_version Structure</caption>
+                <tr>
+                <th>F-Key</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>version_num</td>
+            	<td>character varying(32)</td>
+                <td><i>
+				
+
+				NOT NULL
 				
 				</i>
 				
