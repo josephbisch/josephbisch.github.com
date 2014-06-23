@@ -9,6 +9,9 @@ pygments: true
 # Themes are encouraged to use these universal variables 
 # so be sure to set them if your theme uses them.
 #
+name: Joseph Bisch's Blog
+url: http://www.josephbisch.com/
+
 title : Joseph Bisch
 tagline: Site Tagline
 author :
@@ -79,7 +82,7 @@ JB :
   # Set 'provider' to false to turn commenting off globally.
   #
   comments :
-    provider : disqus
+    provider : false
     disqus :
       short_name : jekyllbootstrap
     livefyre :
