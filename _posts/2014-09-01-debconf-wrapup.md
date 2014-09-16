@@ -15,4 +15,4 @@ On Monday we had the OpenPGP Keysigning. I got to meet people and exchange infor
 
 During the conference I mostly attended talks. Then on Wednesday we had the daytrip. I went hiking at Multnomah Falls, had lunch at Rooster Rock State Park, and then went to Vista House.
 
-Later in the conference, Zack and I did some work on debmetrics. We looked at the tests, which had some issues. I was able to fix most of the issues with the tests while I was there at Debconf. We also moved the debmetrics repository under the qa category of repositories. Previously it was a private repository.
+Later in the conference, Zack and I did some work on debmetrics. We looked at the tests, which had some issues. I was able to fix most of the issues with the tests while I was there at Debconf. We also moved the debmetrics repository under the qa category of repositories. Previously it was a personal repository.
