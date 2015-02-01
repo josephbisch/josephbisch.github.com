@@ -8,7 +8,7 @@ tagline:
 <div class="row-fluid">
   <div class="span4">
     <h2>Who is Joseph Bisch?</h2>
-      <p>I am a student majoring in electrical engineering at <a href="http://www.newhaven.edu/">University of New Haven</a>.</p>
+      <p>I am a student majoring in Computer Engineering with a minor in Electrical Engineering at <a href="http://www.newhaven.edu/">University of New Haven</a>.</p>
       <p><a href="http://www.newhaven.edu/">University of New Haven</a> is located in West Haven, CT.</p>
   </div>
   <div class="span4">
