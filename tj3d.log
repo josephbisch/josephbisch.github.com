@@ -1,7 +1,0 @@
-2014-03-04 17:15:52 error tj3d[9558]: You must set an authentication key in the configuration file. Create a file
-named .taskjugglerrc or taskjuggler.rc that contains at least the following
-lines. Replace 'your_secret_key' with some random character sequence.
-
-_global:
-  authKey: your_secret_key
-
