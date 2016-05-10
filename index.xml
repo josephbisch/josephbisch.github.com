@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Joseph Bisch</title>
+    <link>http://josephbisch.com/</link>
+    <description>Recent content on Joseph Bisch</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 13 Dec 2015 20:23:00 -0500</lastBuildDate>
+    <atom:link href="http://josephbisch.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>New Laptop</title>
+      <link>http://josephbisch.com/post/2015-12-13-new-laptop/</link>
+      <pubDate>Sun, 13 Dec 2015 20:23:00 -0500</pubDate>
+      
+      <guid>http://josephbisch.com/post/2015-12-13-new-laptop/</guid>
+      <description>&lt;p&gt;I got a new laptop. It is the HP Pavilion 15t. The model number is 15t-ab100 and the SKU is L8V46AV.&lt;/p&gt;
+
+&lt;p&gt;I got the i5 processor with 8 GB RAM and 1 TB HDD. It was a big upgrade over my old laptop, because I had a first gen i3 in the old one and this has a Skylake processor.&lt;/p&gt;
+
+&lt;p&gt;I initially tried running Debian via LiveCD on the laptop, but it was an uphill battle getting the newer hardware working. I could have built the latest kernel myself on Debian, but I opted to install Arch. Most of the hardware ended up working fine with the 4.3.1 kernel that was in Arch testing at the time. I still ended up compiling the 4.4.0-rc3 kernel to get the very last outstanding hardware working, such as HDMI output.&lt;/p&gt;
+
+&lt;p&gt;Don&amp;rsquo;t forget to enable the virtualization option in the UEFI if you are going to use KVM.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Namecoin Block Format</title>
+      <link>http://josephbisch.com/post/2014-12-15-namecoin-block-format/</link>
+      <pubDate>Mon, 15 Dec 2014 07:25:00 -0500</pubDate>
+      
+      <guid>http://josephbisch.com/post/2014-12-15-namecoin-block-format/</guid>
+      <description>&lt;p&gt;This article assumes familiarity with the Bitcoin block format.&lt;/p&gt;
+
+&lt;p&gt;Namecoin blocks starting with block 19200 may have some extra data in them. These blocks with extra data are called AuxPOW blocks for Auxiliary Proof of Work. The extra data appears between the nonce and txn_count. This extra data appears when a block has been merged-mined for both the Bitcoin and Namecoin networks.&lt;/p&gt;
+
+&lt;p&gt;It is important to note that a Namecoin block after block 19200 may not be merged-mined, though most are. An important thing to note is that the hash of the block header for an AuxPOW block does not necessarily need to start with leading zeros like a regular block header&amp;rsquo;s hash (and generally it won&amp;rsquo;t start with leading zeros).&lt;/p&gt;
+
+&lt;p&gt;Something that confused me for a while was how to determine whether a block from block 19200 on is merged-mined or not. It turns out that you can use the version in the block header to determine that. If a block is merged-mined, the 0x100 digit will be set. The digit 0x10000 is used to signal that the auxiliary chain being merged-mined is Namecoin.&lt;/p&gt;
+
+&lt;p&gt;For more information including helpful diagrams, see the &lt;a href=&#34;https://en.bitcoin.it/wiki/Merged_mining_specification&#34;&gt;Bitcoin Wiki page on merged-mining&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Installing and Running nmcontrol</title>
+      <link>http://josephbisch.com/post/2014-11-23-installing-and-running-nmcontrol/</link>
+      <pubDate>Sun, 23 Nov 2014 03:25:00 -0500</pubDate>
+      
+      <guid>http://josephbisch.com/post/2014-11-23-installing-and-running-nmcontrol/</guid>
+      <description>&lt;p&gt;I recently installed the program nmcontrol. Doing so was non-trivial, so I am documenting the process I took here.&lt;/p&gt;
+
+&lt;p&gt;For those that don&amp;rsquo;t know, nmcontrol is a daemon that communicates with namecoind and provides services. In particular, I wanted to use the DNS service it provides for accessing .bit domain names. The .bit TLD is used by Namecoin. Namecoin is a decentalized key-value store and among its uses is decentalized DNS.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Run &lt;code&gt;git clone https://github.com/namecoin/nmcontrol.git&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cd nmcontrol&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Make sure namecoind is running in the background. You can do so by running &lt;code&gt;namecoind -daemon&lt;/code&gt;. Also make sure you have a namecoin.conf file in ~/.namecoin/namecoin.conf prior to running namecoind.&lt;/li&gt;
+&lt;li&gt;You need to run nmcontrol as root for the DNS server to run on port 53, but you probably have Namecoin installed for your non-root user. So you need to link /root/.namecoin to point to ~/.namecoin. So run &lt;code&gt;sudo ln -s ~/.namecoin /root/.namecoin&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Run nmcontrol by entering &lt;code&gt;sudo python nmcontrol.py&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Now you need to make sure your DNS is configured to use 127.0.0.1. You only need 127.0.0.1, because nmcontrol will use Google DNS servers to resolve non-.bit domain names. The exact instructions depend on which method of managing your network connections you use. I use Network Manager, so I right-clicked on the Network Manager applet and selected &amp;ldquo;Edit Connections&amp;hellip;&amp;rdquo;. Next I clicked on &amp;ldquo;Wireless&amp;rdquo;, selected my network, and clicked on &amp;ldquo;Edit&amp;hellip;&amp;rdquo;. I went to &amp;ldquo;IPv4 Settings&amp;rdquo;, and changed the &amp;ldquo;Method&amp;rdquo; to &amp;ldquo;Automatic (DHCP) addresses only&amp;rdquo;. In &amp;ldquo;DNS servers&amp;rdquo; I entered 127.0.0.1 and clicked on the &amp;ldquo;Save&amp;hellip;&amp;rdquo; button. Then I clicked on &amp;ldquo;Close&amp;rdquo;.&lt;/li&gt;
+&lt;li&gt;Now you need to restart Network Manager so that the changes will take effect. On Debian Wheezy, go to the terminal and type &lt;code&gt;sudo service network-manager restart&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Now go ahead and browse .bit domain names!&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>My First Package</title>
+      <link>http://josephbisch.com/post/2014-09-04-my-first-package/</link>
+      <pubDate>Thu, 04 Sep 2014 10:14:00 -0400</pubDate>
+      
+      <guid>http://josephbisch.com/post/2014-09-04-my-first-package/</guid>
+      <description>&lt;p&gt;I got my first package uploaded to Debian this week. That package is winetricks. It was orphaned and I adopted it. Now the lastest version (0.0+20140818+svn1202) is available in sid and should migrate to testing in nine days.&lt;/p&gt;
+
+&lt;p&gt;I moved the vcs from collab-maint to &lt;a href=&#34;http://anonscm.debian.org/cgit/users/josephbisch-guest/winetricks.git/&#34;&gt;a personal repo&lt;/a&gt;, since I don&amp;rsquo;t have access to collab-maint.&lt;/p&gt;
+
+&lt;p&gt;I also have a sponsor for slowaes. It is also a package that was orphaned that I am adopting. The changes I made are more minor than those for winetricks. Besides adding myself as a maintainer, I just fix some lintian warnings. Slowaes should be uploaded soon.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Debconf Wrapup</title>
+      <link>http://josephbisch.com/post/2014-09-01-debconf-wrapup/</link>
+      <pubDate>Mon, 01 Sep 2014 14:02:00 -0400</pubDate>
+      
+      <guid>http://josephbisch.com/post/2014-09-01-debconf-wrapup/</guid>
+      <description>&lt;p&gt;Debconf14 was the first Debconf I attended. It was an awesome experience.&lt;/p&gt;
+
+&lt;p&gt;Debconf14 started with a Meet and Greet before the Welcome Talk. I got to meet people and find out what they do for Debian. I also got to meet other GSoC students that I had only previously interacted with online. During the Meet and Greet I also met one of my mentors for GSoC, Zack. Later in the conference I met another of my mentors, Piotr. Previously I only interacted with Zack and Piotr online.&lt;/p&gt;
+
+&lt;p&gt;On Monday we had the OpenPGP Keysigning. I got to meet people and exchange information so that we could later sign keys. Then on Tuesday I gave my talk about debmetrics as part of the larger GSoC talks.&lt;/p&gt;
+
+&lt;p&gt;During the conference I mostly attended talks. Then on Wednesday we had the daytrip. I went hiking at Multnomah Falls, had lunch at Rooster Rock State Park, and then went to Vista House.&lt;/p&gt;
+
+&lt;p&gt;Later in the conference, Zack and I did some work on debmetrics. We looked at the tests, which had some issues. I was able to fix most of the issues with the tests while I was there at Debconf. We also moved the debmetrics repository under the qa category of repositories. Previously it was a personal repository.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>GSoC Update</title>
+      <link>http://josephbisch.com/post/2014-07-11-gsoc-update-1/</link>
+      <pubDate>Fri, 11 Jul 2014 12:30:00 -0400</pubDate>
+      
+      <guid>http://josephbisch.com/post/2014-07-11-gsoc-update-1/</guid>
+      <description>&lt;p&gt;It has been a couple of months since my last GSoC update and a lot has happened since then.&lt;/p&gt;
+
+&lt;p&gt;You can &lt;a href=&#34;http://metrics.debian.net&#34;&gt;view the web interface at metrics.debian.net&lt;/a&gt;. There is a dynamic interface viewable with JavaScript enabled, and a static interface viewable with JS disabled. I am currently working on the dynamic interface.&lt;/p&gt;
+
+&lt;p&gt;In the weeks since my last blog post I have accomplished a lot. There is support for pull and push metrics. Pull metrics run on the debmetrics server and pull data from some source. Push metrics run on a remote server and push data to the debmetrics server via HTTP POST. There is flask code and the static interface portion uses a general route, so that the flask code does not need to be modified every time a metric is added. There is a makefile that runs manifest2index.py and manifest2orm.py to generate the index page of the web interface and the SQLAlchemy model code respectively. I have a config file that allows the user to set the location of the manifest, pull_scripts, and graph_scripts directories. I have a debmetrics.wsgi file for easy deployment of debmetrics.&lt;/p&gt;
+
+&lt;p&gt;There is a single layout.html that is the base layout for all the other pages.&lt;/p&gt;
+
+&lt;p&gt;Nosetests is used for tests. Sphinx and readthedocs are used for the documentation. I wrote a minified_grabber script that downloads all the JS and css files that are not included with debmetrics itself. That helps make deployment easy.&lt;/p&gt;
+
+&lt;p&gt;If you want to take a look at the code you can &lt;a href=&#34;http://anonscm.debian.org/gitweb/?p=users/josephbisch-guest/debmetrics.git;a=summary&#34;&gt;view the repository&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I still have more work to do before the end of GSoC, mostly with the dynamic web interface and packaging of debmetrics.&lt;/p&gt;
+
+&lt;p&gt;To keep up to date on my progress, you can either read this blog, or you can read the &lt;a href=&#34;http://lists.alioth.debian.org/mailman/listinfo/soc-coordination&#34;&gt;soc-corrdination mailing list&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://josephbisch.com/projectsbkup/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://josephbisch.com/projectsbkup/</guid>
+      <description>&lt;div class=&#34;row-fluid&#34;&gt;
+  &lt;div class=&#34;span12&#34;&gt;
+    &lt;h2&gt;My Projects&lt;/h2&gt;
+      &lt;p&gt;&lt;a href=&#34;projects/atari.html&#34;&gt;Atari 8-bit&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;&lt;a href=&#34;projects/android.html&#34;&gt;Android&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;&lt;a href=&#34;projects/debian.html&#34;&gt;Debian&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;&lt;a href=&#34;projects/namecoin.html&#34;&gt;Namecoin&lt;a&gt;&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>A Summer of Code</title>
+      <link>http://josephbisch.com/post/2014-04-22-a-summer-of-code/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://josephbisch.com/post/2014-04-22-a-summer-of-code/</guid>
+      <description>&lt;p&gt;Yesterday I found out that I was accepted into the Google Summer of Code program. I was accepted by Debian and will be working on a Metrics Portal. You can &lt;a href=&#34;http://bits.debian.org/2014/04/welcome-gsoc-students-2014.html&#34;&gt;view the announcement on the Debian blog&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The Metrics Portal will have a database that stores historical data on Debian. It will have an interface to add/remove metrics and a web interface to show the metrics graphically. It will utilize cron jobs to update the metrics and generate graphs. The web interface will utilize JavaScript to allow the client to overlay graphs for comparison purposes. An optional task is for me to create a Debian Package of the portal code for easy deployment of the portal.&lt;/p&gt;
+
+&lt;p&gt;I have decided to use jinja2 as the templating language, flot.js as the JavaScript graphing library, JSON for data, SQLAlchemy for database access, and marshmallow to serialize Python objects to JSON for use with flot.&lt;/p&gt;
+
+&lt;p&gt;You can read more about the Metrics Portal by reading the &lt;a href=&#34;https://wiki.debian.org/SummerOfCode2014/Projects/DebianMetricsPortal&#34;&gt;project listing&lt;/a&gt; or by reading &lt;a href=&#34;https://wiki.debian.org/SummerOfCode2014/StudentApplications/JosephBisch&#34;&gt;my proposal&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;To keep up to date on my progress, you can either read this blog, or you can read the &lt;a href=&#34;http://lists.alioth.debian.org/mailman/listinfo/soc-coordination&#34;&gt;soc-corrdination mailing list&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Android</title>
+      <link>http://josephbisch.com/projects/android/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://josephbisch.com/projects/android/</guid>
+      <description>&lt;div class=&#34;row-fluid&#34;&gt;
+  &lt;div class=&#34;span12&#34;&gt;
+    &lt;h2&gt;Android&lt;/h2&gt;
+    &lt;h3&gt;Advanced Live Wallpapers&lt;/h3&gt;
+    &lt;p&gt;I created an Android Live Wallpaper app that features 3 OpenGL wallpapers. &lt;a href=&#34;https://play.google.com/store/apps/details?id=com.josephbisch.anvancedlivewallpapers&#34;&gt;Available in the Google Play store.&lt;/a&gt;&lt;/p&gt;
+    &lt;h3&gt;Galaxy Live Wallpapers&lt;/h3&gt;
+    &lt;p&gt;I created an Android Live Wallpaper app that features a rotating galaxy. Uses OpenGL. &lt;a href=&#34;https://play.google.com/store/apps/details?id=com.josephbisch.galaxylivewallpaper&#34;&gt;Download it at the Google Play store&lt;/a&gt;&lt;/p&gt;
+    &lt;h3&gt;Battery Widget&lt;/h3&gt;
+    &lt;p&gt;I created a Battery Widget app for Android. &lt;a href=&#34;https://play.google.com/store/apps/details?id=com.josephbisch.batterywidget&#34;&gt;Download it at the Google Play store&lt;/a&gt;&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Atari</title>
+      <link>http://josephbisch.com/projects/atari/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://josephbisch.com/projects/atari/</guid>
+      <description>&lt;div class=&#34;row-fluid&#34;&gt;
+  &lt;div class=&#34;span12&#34;&gt;
+    &lt;h2&gt;Atari 8-bit&lt;/h2&gt;
+    &lt;h3&gt;sio2pc&lt;/h3&gt;
+    &lt;p&gt;I made an sio2pc using an &lt;a href=&#34;https://www.sparkfun.com/products/9716&#34;&gt;FTDI Basic Breakout&lt;/a&gt; from Sparkfun. Make sure to use the 5V one instead of the 3.3V one. I ran &lt;a href=&#34;http://sourceforge.net/projects/aspeqt/&#34;&gt;aspeqt&lt;/a&gt; on my PC. The sio2pc allows one to run disk images from the PC on the Atari and save files from the Atari to the PC.&lt;/p&gt;
+    &lt;h3&gt;Youtube videos&lt;/h3&gt;
+    &lt;p&gt;The following are my Youtube videos on Atari:&lt;/p&gt;
+    &lt;p&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=OoyYS2w9Irk&#34;&gt;Atari Basic - Hello World and Etch-a-Sketch&lt;/a&gt;&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Debian</title>
+      <link>http://josephbisch.com/projects/debian/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://josephbisch.com/projects/debian/</guid>
+      <description>&lt;div class=&#34;row-fluid&#34;&gt;
+  &lt;div class=&#34;span12&#34;&gt;
+    &lt;h2&gt;Debian&lt;/h2&gt;
+    &lt;h3&gt;Overview&lt;/h3&gt;
+    &lt;p&gt;At this time, this page mainly covers my contributions to Debian.&lt;/p&gt;
+    &lt;h3&gt;My Start/GSoC 2014&lt;/h3&gt;
+    &lt;p&gt;I started contributing to Debian when I applied to Debian for Google Summer of Code (GSoC) 2014. I decided to apply for the Debian Metrics Portal project and I ended up being selected as the student to work on the project. Over the course of Summer 2014, I designed and implemented a website that stores and displays statistics about Debian. The website is available at &lt;a href=&#34;http://metrics.debian.net/&#34;&gt;http://metrics.debian.net&lt;/a&gt;.&lt;/p&gt;
+    &lt;h3&gt;Packaging&lt;/h3&gt;
+    &lt;p&gt;I wanted to get involved in packaging software to go into the actual Debian OS, so after the summer I began working on packaging. I started with packaging a piece of software called Armory. Armory is a Bitcoin wallet, so I decided to start with it since I am interested in Bitcoin. In hindsight it was an ambitious first package, because it is such a large piece of software.&lt;/p&gt;
+    &lt;p&gt;In the meantime, while still working on Armory, I adopted two packages. One was slowaes and the other was winetricks. The slowaes package was simple to adopt. It was orphaned and no one seemed to be adopting it, so I went ahead and adopted it. I did so, because it was a dependency for electrum and I didn&#39;t want to see electrum removed from Debian. In the end, I just had to change the maintainer to myself and fix some policy issues. So It hasn&#39;t been much work to maintain. The other package, winetricks, was a little more work. The latest release in Debian was from January 2014, so I packaged a version from August 2014. Recently there were a couple bugs reported against winetricks due to sha1sum mismatches. One I probably will be able to fix in Jessie, due to the severity of the bug. However, the other one probably can&#39;t be fixed in Jessie due to the freeze.&lt;/p&gt;
+    &lt;p&gt;Eventually I finished packaging Armory. It is currently only in unstable. It has been purposefully block from migrating to testing. That is so it remains easy to update Debian users to a new version of Armory. Otherwise, when testing becomes stable, users would be stuck on an outdated version of Armory.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>GSoC Welcome Package Received</title>
+      <link>http://josephbisch.com/post/2014-05-01-gsoc-welcome-package-received/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://josephbisch.com/post/2014-05-01-gsoc-welcome-package-received/</guid>
+      <description>&lt;p&gt;A couple days ago I received my welcome package from Google. The welcome package included a pen and a notepad that has stickers.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://www.josephbisch.com/img/gsoc1.jpg&#34; alt=&#34;Notepad and Pen&#34; /&gt;
+&lt;img src=&#34;http://www.josephbisch.com/img/gsoc2.jpg&#34; alt=&#34;Stickers&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Since my last update I got the repo setup and started working on the specifications. I have been emailing with my mentors to work out the specs.&lt;/p&gt;
+
+&lt;p&gt;You can &lt;a href=&#34;http://anonscm.debian.org/gitweb/?p=users/josephbisch-guest/debmetrics.git;a=summary&#34;&gt;view the git repo&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;To keep up to date on my progress, you can either read this blog, or you can read the &lt;a href=&#34;http://lists.alioth.debian.org/mailman/listinfo/soc-coordination&#34;&gt;soc-corrdination mailing list&lt;/a&gt; once coding starts on the 19th.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>My Projects</title>
+      <link>http://josephbisch.com/projectsbkup/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://josephbisch.com/projectsbkup/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Namecoin</title>
+      <link>http://josephbisch.com/projects/namecoin/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://josephbisch.com/projects/namecoin/</guid>
+      <description>&lt;div class=&#34;row-fluid&#34;&gt;
+  &lt;div class=&#34;span12&#34;&gt;
+    &lt;h2&gt;Namecoin&lt;/h2&gt;
+    &lt;h3&gt;Introduction&lt;/h3&gt;
+    &lt;p&gt;This page is mostly about my contributions to Namecoin.&lt;/p&gt;
+    &lt;h3&gt;My Start&lt;/h3&gt;
+    &lt;p&gt;My contributions to Namecoin started when I began working on adding Namecoin currency support to Armory. I had a question that I asked some Namecoin developers. From there I stuck around and worked on some other Namecoin projects.&lt;/p&gt;
+    &lt;h3&gt;The Projects&lt;/h3&gt;
+    &lt;p&gt;My Armory repository ended up &lt;a href=&#34;https://github.com/namecoin/BitcoinArmory&#34;&gt;getting forked&lt;/a&gt; by the official Namecoin GitHub account. I also worked (or am working) on some stuff related to NMControl, most notably Python 3 support and an Android version called &lt;a href=&#34;https://github.com/josephbisch/nmcontrolandroid&#34;&gt;NMControl for Android&lt;/a&gt;. I am also part of the group looking into build automation and reproducibility for Namecoin software.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

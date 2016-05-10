@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+	
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="Joseph Bisch"> 
+
+
+	<title>Debian - http://josephbisch.com</title>
+	<link rel="canonical" href="http://josephbisch.com/projects/debian/">
+	
+	<link href="http://josephbisch.com/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="http://josephbisch.com/css/font-awesome.css" rel="stylesheet" />
+	<link href="http://josephbisch.com/css/custom.css" rel="stylesheet" />
+
+	
+</head>
+
+<body>
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+					<span class="sr-only">Toggle Navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="http://josephbisch.com">Joseph Bisch</a>
+			</div>
+			<div class="collapse navbar-collapse navbar-ex1-collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="http://josephbisch.com/post/">Post Index</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-9">
+			<div class="well well-sm">
+				<h3>Debian<br /> <small></small></h3>
+				<hr />
+				<div class="row-fluid">
+  <div class="span12">
+    <h2>Debian</h2>
+    <h3>Overview</h3>
+    <p>At this time, this page mainly covers my contributions to Debian.</p>
+    <h3>My Start/GSoC 2014</h3>
+    <p>I started contributing to Debian when I applied to Debian for Google Summer of Code (GSoC) 2014. I decided to apply for the Debian Metrics Portal project and I ended up being selected as the student to work on the project. Over the course of Summer 2014, I designed and implemented a website that stores and displays statistics about Debian. The website is available at <a href="http://metrics.debian.net/">http://metrics.debian.net</a>.</p>
+    <h3>Packaging</h3>
+    <p>I wanted to get involved in packaging software to go into the actual Debian OS, so after the summer I began working on packaging. I started with packaging a piece of software called Armory. Armory is a Bitcoin wallet, so I decided to start with it since I am interested in Bitcoin. In hindsight it was an ambitious first package, because it is such a large piece of software.</p>
+    <p>In the meantime, while still working on Armory, I adopted two packages. One was slowaes and the other was winetricks. The slowaes package was simple to adopt. It was orphaned and no one seemed to be adopting it, so I went ahead and adopted it. I did so, because it was a dependency for electrum and I didn't want to see electrum removed from Debian. In the end, I just had to change the maintainer to myself and fix some policy issues. So It hasn't been much work to maintain. The other package, winetricks, was a little more work. The latest release in Debian was from January 2014, so I packaged a version from August 2014. Recently there were a couple bugs reported against winetricks due to sha1sum mismatches. One I probably will be able to fix in Jessie, due to the severity of the bug. However, the other one probably can't be fixed in Jessie due to the freeze.</p>
+    <p>Eventually I finished packaging Armory. It is currently only in unstable. It has been purposefully block from migrating to testing. That is so it remains easy to update Debian users to a new version of Armory. Otherwise, when testing becomes stable, users would be stuck on an outdated version of Armory.</p>
+  </div>
+</div>
+
+			</div>
+		</div>
+
+		
+		<div class="col-md-3">
+				<div class="panel panel-default">
+		<div class="panel-heading" style="padding: 2px 15px;">
+			<h4>Connect. Socialize.</h4>
+		</div>
+		<div class="panel-body">
+			<a href="https://github.com/josephbisch" class="btn btn-primary btn-xs"><i class="fa fa-github-square fa-2x"></i></a>
+		</div>
+	</div>
+
+		</div>
+	</div>
+	<footer>
+		<div class="row">
+			<hr />
+			<div class="col-sm-12">
+				<p>&copy; Joseph Bisch 2016</p>
+			</div>
+		</div>
+	</footer>
+
+</div>
+</body>
+</html>
+
