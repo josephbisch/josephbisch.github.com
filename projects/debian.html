@@ -1,0 +1,22 @@
+---
+layout: page
+title: "Debian"
+description: ""
+group: navigation
+show: "true"
+---
+{% include JB/setup %}
+
+<div class="row-fluid">
+  <div class="span12">
+    <h2>Debian</h2>
+    <h3>Overview</h3>
+    <p>At this time, this page mainly covers my contributions to Debian.</p>
+    <h3>My Start/GSoC 2014</h3>
+    <p>I started contributing to Debian when I applied to Debian for Google Summer of Code (GSoC) 2014. I decided to apply for the Debian Metrics Portal project and I ended up being selected as the student to work on the project. Over the course of Summer 2014, I designed and implemented a website that stores and displays statistics about Debian. The website is available at <a href="http://metrics.debian.net/">http://metrics.debian.net</a>.</p>
+    <h3>Packaging</h3>
+    <p>I wanted to get involved in packaging software to go into the actual Debian OS, so after the summer I began working on packaging. I started with packaging a piece of software called Armory. Armory is a Bitcoin wallet, so I decided to start with it since I am interested in Bitcoin. In hindsight it was an ambitious first package, because it is such a large piece of software.</p>
+    <p>In the meantime, while still working on Armory, I adopted two packages. One was slowaes and the other was winetricks. The slowaes package was simple to adopt. It was orphaned and no one seemed to be adopting it, so I went ahead and adopted it. I did so, because it was a dependency for electrum and I didn't want to see electrum removed from Debian. In the end, I just had to change the maintainer to myself and fix some policy issues. So It hasn't been much work to maintain. The other package, winetricks, was a little more work. The latest release in Debian was from January 2014, so I packaged a version from August 2014. Recently there were a couple bugs reported against winetricks due to sha1sum mismatches. One I probably will be able to fix in Jessie, due to the severity of the bug. However, the other one probably can't be fixed in Jessie due to the freeze.</p>
+    <p>Eventually I finished packaging Armory. It is currently only in unstable. It has been purposefully block from migrating to testing. That is so it remains easy to update Debian users to a new version of Armory. Otherwise, when testing becomes stable, users would be stuck on an outdated version of Armory.</p>
+  </div>
+</div>
