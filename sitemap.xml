@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>http://josephbisch.com/</loc>
+    <lastmod>2015-12-13T20:23:00-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://josephbisch.com/post/2015-12-13-new-laptop/</loc>
+    <lastmod>2015-12-13T20:23:00-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://josephbisch.com/post/2014-12-15-namecoin-block-format/</loc>
+    <lastmod>2014-12-15T07:25:00-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://josephbisch.com/post/2014-11-23-installing-and-running-nmcontrol/</loc>
+    <lastmod>2014-11-23T03:25:00-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://josephbisch.com/post/2014-09-04-my-first-package/</loc>
+    <lastmod>2014-09-04T10:14:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://josephbisch.com/post/2014-09-01-debconf-wrapup/</loc>
+    <lastmod>2014-09-01T14:02:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://josephbisch.com/post/2014-07-11-gsoc-update-1/</loc>
+    <lastmod>2014-07-11T12:30:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://josephbisch.com/post/2014-05-01-gsoc-welcome-package-received/</loc>
+    <lastmod>2014-05-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://josephbisch.com/post/2014-04-22-a-summer-of-code/</loc>
+    <lastmod>2014-04-22T00:00:00+00:00</lastmod>
+  </url>
+  
+</urlset>

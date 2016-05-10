@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Joseph Bisch">
+
+
+    <title>GSoC Update - http://josephbisch.com/</title>
+    <link rel="canonical" href="http://josephbisch.com/post/2014-07-11-gsoc-update-1/">
+    
+    <link href="http://josephbisch.com/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://josephbisch.com/css/font-awesome.css" rel="stylesheet">
+    <link href="http://josephbisch.com/css/custom.css" rel="stylesheet">
+
+    
+</head>
+
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle Navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="http://josephbisch.com/">Joseph Bisch</a>
+            </div>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="http://josephbisch.com/post/">Post Index</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="well well-sm">
+                    <h3>GSoC Update<br> <small></small></h3>
+                    <hr>
+                    <p>It has been a couple of months since my last GSoC update and a lot has happened since then.</p>
+
+<p>You can <a href="http://metrics.debian.net">view the web interface at metrics.debian.net</a>. There is a dynamic interface viewable with JavaScript enabled, and a static interface viewable with JS disabled. I am currently working on the dynamic interface.</p>
+
+<p>In the weeks since my last blog post I have accomplished a lot. There is support for pull and push metrics. Pull metrics run on the debmetrics server and pull data from some source. Push metrics run on a remote server and push data to the debmetrics server via HTTP POST. There is flask code and the static interface portion uses a general route, so that the flask code does not need to be modified every time a metric is added. There is a makefile that runs manifest2index.py and manifest2orm.py to generate the index page of the web interface and the SQLAlchemy model code respectively. I have a config file that allows the user to set the location of the manifest, pull_scripts, and graph_scripts directories. I have a debmetrics.wsgi file for easy deployment of debmetrics.</p>
+
+<p>There is a single layout.html that is the base layout for all the other pages.</p>
+
+<p>Nosetests is used for tests. Sphinx and readthedocs are used for the documentation. I wrote a minified_grabber script that downloads all the JS and css files that are not included with debmetrics itself. That helps make deployment easy.</p>
+
+<p>If you want to take a look at the code you can <a href="http://anonscm.debian.org/gitweb/?p=users/josephbisch-guest/debmetrics.git;a=summary">view the repository</a>.</p>
+
+<p>I still have more work to do before the end of GSoC, mostly with the dynamic web interface and packaging of debmetrics.</p>
+
+<p>To keep up to date on my progress, you can either read this blog, or you can read the <a href="http://lists.alioth.debian.org/mailman/listinfo/soc-coordination">soc-corrdination mailing list</a>.</p>
+
+            </div>
+        </div>
+
+        
+        <div class="col-md-3">
+            <div class="well well-sm"> 
+                <h4>July 11, 2014<br>
+                <small>299 words</small></h4>
+                <hr>
+                <strong>Categories</strong>
+                <ul class="list-unstyled">
+                
+                </ul>
+                <hr>
+                <strong>Tags</strong><br>
+                <a class="label label-default" href="http://josephbisch.com/tags/debian">debian</a> <a class="label label-default" href="http://josephbisch.com/tags/debian-soc">debian-soc</a> 
+            </div>
+                <div class="panel panel-default">
+        <div class="panel-heading" style="padding: 2px 15px;">
+            <h4>Connect. Socialize.</h4>
+        </div>
+        <div class="panel-body">
+            <a href="https://github.com/josephbisch/" class="btn btn-primary btn-xs"><i class="fa fa-github-square fa-2x"></i></a>
+        </div>
+    </div>
+
+        </div>
+    </div>
+        <footer>
+            <div class="row">
+                <hr>
+                <div class="col-sm-12">
+                    <p>&copy; Joseph Bisch 2016</p>
+                </div>
+            </div>
+        </footer>
+
+</div>
+
+    
+    <script src="http://josephbisch.com/js/bootstrap.js"></script>
+</body>
+</html>
+

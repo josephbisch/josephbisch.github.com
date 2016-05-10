@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Joseph Bisch">
+
+
+    <title>Installing and Running nmcontrol - http://josephbisch.com/</title>
+    <link rel="canonical" href="http://josephbisch.com/post/2014-11-23-installing-and-running-nmcontrol/">
+    
+    <link href="http://josephbisch.com/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://josephbisch.com/css/font-awesome.css" rel="stylesheet">
+    <link href="http://josephbisch.com/css/custom.css" rel="stylesheet">
+
+    
+</head>
+
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle Navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="http://josephbisch.com/">Joseph Bisch</a>
+            </div>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="http://josephbisch.com/post/">Post Index</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="well well-sm">
+                    <h3>Installing and Running nmcontrol<br> <small></small></h3>
+                    <hr>
+                    <p>I recently installed the program nmcontrol. Doing so was non-trivial, so I am documenting the process I took here.</p>
+
+<p>For those that don&rsquo;t know, nmcontrol is a daemon that communicates with namecoind and provides services. In particular, I wanted to use the DNS service it provides for accessing .bit domain names. The .bit TLD is used by Namecoin. Namecoin is a decentalized key-value store and among its uses is decentalized DNS.</p>
+
+<ol>
+<li>Run <code>git clone https://github.com/namecoin/nmcontrol.git</code>.</li>
+<li><code>cd nmcontrol</code></li>
+<li>Make sure namecoind is running in the background. You can do so by running <code>namecoind -daemon</code>. Also make sure you have a namecoin.conf file in ~/.namecoin/namecoin.conf prior to running namecoind.</li>
+<li>You need to run nmcontrol as root for the DNS server to run on port 53, but you probably have Namecoin installed for your non-root user. So you need to link /root/.namecoin to point to ~/.namecoin. So run <code>sudo ln -s ~/.namecoin /root/.namecoin</code>.</li>
+<li>Run nmcontrol by entering <code>sudo python nmcontrol.py</code>.</li>
+<li>Now you need to make sure your DNS is configured to use 127.0.0.1. You only need 127.0.0.1, because nmcontrol will use Google DNS servers to resolve non-.bit domain names. The exact instructions depend on which method of managing your network connections you use. I use Network Manager, so I right-clicked on the Network Manager applet and selected &ldquo;Edit Connections&hellip;&rdquo;. Next I clicked on &ldquo;Wireless&rdquo;, selected my network, and clicked on &ldquo;Edit&hellip;&rdquo;. I went to &ldquo;IPv4 Settings&rdquo;, and changed the &ldquo;Method&rdquo; to &ldquo;Automatic (DHCP) addresses only&rdquo;. In &ldquo;DNS servers&rdquo; I entered 127.0.0.1 and clicked on the &ldquo;Save&hellip;&rdquo; button. Then I clicked on &ldquo;Close&rdquo;.</li>
+<li>Now you need to restart Network Manager so that the changes will take effect. On Debian Wheezy, go to the terminal and type <code>sudo service network-manager restart</code>.</li>
+<li>Now go ahead and browse .bit domain names!</li>
+</ol>
+
+            </div>
+        </div>
+
+        
+        <div class="col-md-3">
+            <div class="well well-sm"> 
+                <h4>November 23, 2014<br>
+                <small>294 words</small></h4>
+                <hr>
+                <strong>Categories</strong>
+                <ul class="list-unstyled">
+                
+                </ul>
+                <hr>
+                <strong>Tags</strong><br>
+                <a class="label label-default" href="http://josephbisch.com/tags/namecoin">namecoin</a> <a class="label label-default" href="http://josephbisch.com/tags/cryptocurrency">cryptocurrency</a> 
+            </div>
+                <div class="panel panel-default">
+        <div class="panel-heading" style="padding: 2px 15px;">
+            <h4>Connect. Socialize.</h4>
+        </div>
+        <div class="panel-body">
+            <a href="https://github.com/josephbisch/" class="btn btn-primary btn-xs"><i class="fa fa-github-square fa-2x"></i></a>
+        </div>
+    </div>
+
+        </div>
+    </div>
+        <footer>
+            <div class="row">
+                <hr>
+                <div class="col-sm-12">
+                    <p>&copy; Joseph Bisch 2016</p>
+                </div>
+            </div>
+        </footer>
+
+</div>
+
+    
+    <script src="http://josephbisch.com/js/bootstrap.js"></script>
+</body>
+</html>
+
