@@ -6,8 +6,20 @@
     <description>Recent content on Joseph Bisch</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 13 Dec 2015 20:23:00 -0500</lastBuildDate>
+    <lastBuildDate>Tue, 10 May 2016 21:59:45 -0400</lastBuildDate>
     <atom:link href="http://josephbisch.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Contact</title>
+      <link>http://josephbisch.com/contact/</link>
+      <pubDate>Tue, 10 May 2016 21:59:45 -0400</pubDate>
+      
+      <guid>http://josephbisch.com/contact/</guid>
+      <description>&lt;p&gt;Personal email: joseph.bisch AT gmail DOT com&lt;/p&gt;
+
+&lt;p&gt;Also see the social media links to the right.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>New Laptop</title>
