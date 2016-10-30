@@ -45,6 +45,16 @@
     <div class="row">
         <div class="col-md-9">
         
+            <div class="well well-sm">
+    <h4>
+        <a href="http://josephbisch.com/post/2016-10-30-irssi-bug-563/">Irssi Bug #563</a> <small class="pull-right">Posted on Oct 30, 2016</small><br>
+        <small></small>
+    </h4>
+    <hr>
+    <p>Background While fuzzing irssi&rsquo;s config file parser using afl, I encountered a bug that I reported and became issue #563 for irssi on GitHub. I am going to perform an analysis of the bug and my solution to the bug. All I had to do to build irssi with afl was add CC=/path/to/afl/afl-gcc to the configure script invocation. After building irssi, I started running irssi --config file.cfg with afl, allowing afl to pass in the configuration file it generates in place of file.cfg.</p>
+    <a class="btn btn-primary btn-xs" href="http://josephbisch.com/post/2016-10-30-irssi-bug-563/">Read More <span class="fa fa-angle-double-right"></span></a>
+</div>
+        
             
         
             <div class="well well-sm">

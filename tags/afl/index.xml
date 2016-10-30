@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Linux on Joseph Bisch</title>
-    <link>http://josephbisch.com/tags/linux/</link>
-    <description>Recent content in Linux on Joseph Bisch</description>
+    <title>Afl on Joseph Bisch</title>
+    <link>http://josephbisch.com/tags/afl/</link>
+    <description>Recent content in Afl on Joseph Bisch</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 30 Oct 2016 17:20:00 -0400</lastBuildDate>
-    <atom:link href="http://josephbisch.com/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://josephbisch.com/tags/afl/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Irssi Bug #563</title>
@@ -154,22 +154,6 @@ index dd4d94b..e0a7a8d 100644
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;That change is irssi &lt;a href=&#34;https://github.com/irssi/irssi/pull/570&#34;&gt;PR #570&lt;/a&gt;.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>New Laptop</title>
-      <link>http://josephbisch.com/post/2015-12-13-new-laptop/</link>
-      <pubDate>Sun, 13 Dec 2015 20:23:00 -0500</pubDate>
-      
-      <guid>http://josephbisch.com/post/2015-12-13-new-laptop/</guid>
-      <description>&lt;p&gt;I got a new laptop. It is the HP Pavilion 15t. The model number is 15t-ab100 and the SKU is L8V46AV.&lt;/p&gt;
-
-&lt;p&gt;I got the i5 processor with 8 GB RAM and 1 TB HDD. It was a big upgrade over my old laptop, because I had a first gen i3 in the old one and this has a Skylake processor.&lt;/p&gt;
-
-&lt;p&gt;I initially tried running Debian via LiveCD on the laptop, but it was an uphill battle getting the newer hardware working. I could have built the latest kernel myself on Debian, but I opted to install Arch. Most of the hardware ended up working fine with the 4.3.1 kernel that was in Arch testing at the time. I still ended up compiling the 4.4.0-rc3 kernel to get the very last outstanding hardware working, such as HDMI output.&lt;/p&gt;
-
-&lt;p&gt;Don&amp;rsquo;t forget to enable the virtualization option in the UEFI if you are going to use KVM.&lt;/p&gt;
 </description>
     </item>
     
