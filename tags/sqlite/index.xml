@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Linux on Joseph Bisch</title>
-    <link>http://josephbisch.com/tags/linux/</link>
-    <description>Recent content in Linux on Joseph Bisch</description>
+    <title>Sqlite on Joseph Bisch</title>
+    <link>http://josephbisch.com/tags/sqlite/</link>
+    <description>Recent content in Sqlite on Joseph Bisch</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 02 Dec 2016 13:20:00 -0500</lastBuildDate>
-    <atom:link href="http://josephbisch.com/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://josephbisch.com/tags/sqlite/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Finding a Bug in SQLite by Fuzzing osquery</title>
@@ -107,170 +107,6 @@ Shadow byte legend (one shadow byte represents 8 application bytes):
 &lt;p&gt;I reported the bug on 2016-11-13, at the time thinking it was a bug with osquery. I looked into the bug, but couldn&amp;rsquo;t determine what exactly osquery was doing wrong that led to the bug. Then on 2016-11-15, I saw a version control check-in for SQLite with hash &lt;a href=&#34;https://www.sqlite.org/src/info/c5dbc599b910c02a&#34;&gt;c5dbc599b910c02a961675b12b273b8df6d29450&lt;/a&gt; that fixes a use-after-free according to the comment. It occured to me that I may be chasing after a bug in osquery, when the bug may actually be in SQLite. So I tried building osquery with the latest check-in of SQLite (that includes that use-after-free fix). I was no longer able to reproduce the bug.&lt;/p&gt;
 
 &lt;p&gt;It turns out that the &lt;a href=&#34;https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=171&#34;&gt;bug&lt;/a&gt; was found by Google&amp;rsquo;s &lt;a href=&#34;https://github.com/google/oss-fuzz&#34;&gt;OSS-Fuzz&lt;/a&gt; the previous day (based on their bug report date). So it looks like I found the bug first, but just didn&amp;rsquo;t recognize it as a SQLite bug.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Irssi Bug #563</title>
-      <link>http://josephbisch.com/post/2016-10-30-irssi-bug-563/</link>
-      <pubDate>Sun, 30 Oct 2016 17:20:00 -0400</pubDate>
-      
-      <guid>http://josephbisch.com/post/2016-10-30-irssi-bug-563/</guid>
-      <description>
-
-&lt;h2 id=&#34;background:c6a9023264dec589d3ed6645038cfede&#34;&gt;Background&lt;/h2&gt;
-
-&lt;p&gt;While fuzzing irssi&amp;rsquo;s config file parser using afl, I encountered a bug that I reported and became &lt;a href=&#34;https://github.com/irssi/irssi/issues/563&#34;&gt;issue #563&lt;/a&gt; for irssi on GitHub. I am going to perform an analysis of the bug and my solution to the bug.&lt;/p&gt;
-
-&lt;p&gt;All I had to do to build irssi with afl was add &lt;code&gt;CC=/path/to/afl/afl-gcc&lt;/code&gt; to the configure script invocation. After building irssi, I started running &lt;code&gt;irssi --config file.cfg&lt;/code&gt; with afl, allowing afl to pass in the configuration file it generates in place of file.cfg. All that can be done by following a guide that covers how to use afl.&lt;/p&gt;
-
-&lt;p&gt;After running afl for a while, I ended up with a number of crashes. The input that caused the first crash minimized to the following:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;0 0
-chatnets{0&amp;quot;&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Running that input through irssi outside of the context of afl yielded a coredump that I was able to give to gdb to get a backtrace.&lt;/p&gt;
-
-&lt;p&gt;I reported the bug, including the minimized input, the backtrace, and the commit I was fuzzing and it became &lt;a href=&#34;https://github.com/irssi/irssi/issues/563&#34;&gt;issue #563&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;After going through some more of the crashes I found, I ended up with two more minimized inputs that appeared to be caused by the same issue.&lt;/p&gt;
-
-&lt;h2 id=&#34;debugging-with-gdb:c6a9023264dec589d3ed6645038cfede&#34;&gt;Debugging with gdb&lt;/h2&gt;
-
-&lt;p&gt;We will start with the backtrace:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;(gdb) bt
-#0  0x00007f2a7a92c693 in g_slist_last () from /usr/lib/libglib-2.0.so.0
-#1  0x00007f2a7a92c6df in g_slist_append () from /usr/lib/libglib-2.0.so.0
-#2  0x0000000000494d62 in config_node_set_str (rec=0x16f6790, parent=parent@entry=0x16f7ac0, key=key@entry=0x4a4100 &amp;quot;type&amp;quot;, value=0x16ff490 &amp;quot;IRC&amp;quot;) at set.c:119
-#3  0x000000000047cf5e in chatnet_read (node=0x16f7ac0) at chatnets.c:146
-#4  0x000000000047d14a in read_chatnets () at chatnets.c:174
-#5  0x000000000048f083 in signal_emit_real (rec=rec@entry=0x16f84b0, params=params@entry=0, va=va@entry=0x7ffcaf583948, first_hook=&amp;lt;optimized out&amp;gt;) at signals.c:242
-#6  0x000000000048f4ae in signal_emit (signal=signal@entry=0x4a617e &amp;quot;irssi init read settings&amp;quot;, params=params@entry=0) at signals.c:286
-#7  0x000000000043ef5f in fe_common_core_finish_init () at fe-common-core.c:426
-#8  0x000000000042a29b in textui_finish_init () at irssi.c:197
-#9  0x000000000042a497 in main (argc=&amp;lt;optimized out&amp;gt;, argv=&amp;lt;optimized out&amp;gt;) at irssi.c:314
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Seeing that the last function called that is part of irssi itself is config_node_set_str, that looks like a good starting place.&lt;/p&gt;
-
-&lt;p&gt;Let&amp;rsquo;s see what that line looks like:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;(gdb) list set.c:119
-114			if (g_strcmp0(node-&amp;gt;value, value) == 0)
-115				return;
-116	                g_free(node-&amp;gt;value);
-117		} else {
-118			node = g_new0(CONFIG_NODE, 1);
-119			parent-&amp;gt;value = g_slist_append(parent-&amp;gt;value, node);
-120	
-121			node-&amp;gt;type = no_key ? NODE_TYPE_VALUE : NODE_TYPE_KEY;
-122			node-&amp;gt;key = no_key ? NULL : g_strdup(key);
-123		}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;We can see that the &lt;code&gt;g_slist_append&lt;/code&gt; is taking in parameters of parent-&amp;gt;value and node.&lt;/p&gt;
-
-&lt;p&gt;What if we print node?&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;(gdb) frame 2
-#2  0x0000000000494d62 in config_node_set_str (rec=0x16f6790, parent=parent@entry=0x16f7ac0, key=key@entry=0x4a4100 &amp;quot;type&amp;quot;, value=0x16ff490 &amp;quot;IRC&amp;quot;) at set.c:119
-119			parent-&amp;gt;value = g_slist_append(parent-&amp;gt;value, node);
-(gdb) p node
-$1 = (CONFIG_NODE *) 0x1795ff0
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;We see that node is a CONFIG_NODE pointer.&lt;/p&gt;
-
-&lt;p&gt;How about parent-&amp;gt;value?&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;(gdb) p parent-&amp;gt;value
-$2 = (void *) 0x16f7bd0
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;We get a void pointer. We have no type info about the pointer. Looking at the &lt;a href=&#34;https://developer.gnome.org/glib/stable/glib-Singly-Linked-Lists.html#g-slist-append&#34;&gt;GLib documentation&lt;/a&gt;, it seems that the first parameter to &lt;code&gt;g_slist_append&lt;/code&gt; is expected to be a GSList pointer.&lt;/p&gt;
-
-&lt;p&gt;What if we interpret the void pointer as a GSList pointer?&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;(gdb) p (GSList *)(parent-&amp;gt;value)
-$3 = 0x16f7bd0 = {0x7f2a79f60030, 0x7f2a79f67c58 &amp;lt;main_arena+376&amp;gt;, 0x7f2a79f67c48 &amp;lt;main_arena+360&amp;gt;, 0x7f2a79f67c38 &amp;lt;main_arena+344&amp;gt;, 0x7f2a79f67c28 &amp;lt;main_arena+328&amp;gt;, 0x7f2a79f67c18 &amp;lt;main_arena+312&amp;gt;, 
-  0x7f2a79f67c08 &amp;lt;main_arena+296&amp;gt;, 0x7f2a79f67bf8 &amp;lt;main_arena+280&amp;gt;, 0x7f2a79f67be8 &amp;lt;main_arena+264&amp;gt;, 0x7f2a79f67bd8 &amp;lt;main_arena+248&amp;gt;, 0x7f2a79f67bc8 &amp;lt;main_arena+232&amp;gt;, 0x7f2a79f67bb8 &amp;lt;main_arena+216&amp;gt;, 
-  0x7f2a79f67ba8 &amp;lt;main_arena+200&amp;gt;, 0x7f2a79f67b98 &amp;lt;main_arena+184&amp;gt;, 0x7f2a79f67b88 &amp;lt;main_arena+168&amp;gt;, 0x7f2a79f67b78 &amp;lt;main_arena+152&amp;gt;, 0x7f2a79f67b68 &amp;lt;main_arena+136&amp;gt;, 0x7f2a79f67b58 &amp;lt;main_arena+120&amp;gt;, 
-  0x7f2a79f67b48 &amp;lt;main_arena+104&amp;gt;, 0x1796120, 0x64, Cannot access memory at address 0x141
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Hm, interesting. Now lets see what happens if we interpret the void pointer as a char pointer?&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;(gdb) p (char *)(parent-&amp;gt;value)
-$4 = 0x16f7bd0 &amp;quot;0&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Ah, so it seems like &lt;code&gt;parent-&amp;gt;value&lt;/code&gt; points to the character &amp;lsquo;0&amp;rsquo; followed by a terminator.&lt;/p&gt;
-
-&lt;p&gt;So one solution is to make sure that parent is a list node before assuming that &lt;code&gt;parent-&amp;gt;value&lt;/code&gt; points to a GSList.&lt;/p&gt;
-
-&lt;p&gt;First we need to backtrack and see where parent is coming from:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;(gdb) l chatnet_read
-130	{
-131	        CHAT_PROTOCOL_REC *proto;
-132		CHATNET_REC *rec;
-133	        char *type;
-134	
-135		if (node == NULL || node-&amp;gt;key == NULL)
-136			return;
-137	
-138		type = config_node_get_str(node, &amp;quot;type&amp;quot;, NULL);
-139		proto = type == NULL ? NULL : chat_protocol_find(type);
-140		if (proto == NULL) {
-141			proto = type == NULL ? chat_protocol_get_default() :
-142				chat_protocol_get_unknown(type);
-143		}
-144	
-145		if (type == NULL)
-146			iconfig_node_set_str(node, &amp;quot;type&amp;quot;, proto-&amp;gt;name);
-147	
-148		rec = proto-&amp;gt;create_chatnet();
-149		rec-&amp;gt;type = module_get_uniq_id(&amp;quot;CHATNET&amp;quot;, 0);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;We see the beginning of the &lt;code&gt;chatnet_read&lt;/code&gt; function. There is a call to &lt;code&gt;iconfig_node_set_str&lt;/code&gt; on line 146, where node is passed as the first parameter, so it will be parent in the context of &lt;code&gt;config_node_set_str&lt;/code&gt;. The &lt;code&gt;iconfig_node_*&lt;/code&gt; functions just seem to actually be &lt;code&gt;#define&lt;/code&gt;s to the corresponding &lt;code&gt;config_node_*&lt;/code&gt; functions with the mainconfig passed in as the first parameter.&lt;/p&gt;
-
-&lt;p&gt;We see on line 135 a check to ensure that &lt;code&gt;node != NULL&lt;/code&gt; and &lt;code&gt;node-&amp;gt;key != NULL&lt;/code&gt; before proceeding, but there isn&amp;rsquo;t a check to make sure node is a list node. So I made the following change:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;diff --git a/src/core/chatnets.c b/src/core/chatnets.c
-index dd4d94b..e0a7a8d 100644
---- a/src/core/chatnets.c
-+++ b/src/core/chatnets.c
-@@ -132,7 +132,7 @@ static void chatnet_read(CONFIG_NODE *node)
- 	CHATNET_REC *rec;
-         char *type;
- 
--	if (node == NULL || node-&amp;gt;key == NULL)
-+	if (node == NULL || node-&amp;gt;key == NULL || !is_node_list(node))
- 		return;
- 
- 	type = config_node_get_str(node, &amp;quot;type&amp;quot;, NULL);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;That change is irssi &lt;a href=&#34;https://github.com/irssi/irssi/pull/570&#34;&gt;PR #570&lt;/a&gt;.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>New Laptop</title>
-      <link>http://josephbisch.com/post/2015-12-13-new-laptop/</link>
-      <pubDate>Sun, 13 Dec 2015 20:23:00 -0500</pubDate>
-      
-      <guid>http://josephbisch.com/post/2015-12-13-new-laptop/</guid>
-      <description>&lt;p&gt;I got a new laptop. It is the HP Pavilion 15t. The model number is 15t-ab100 and the SKU is L8V46AV.&lt;/p&gt;
-
-&lt;p&gt;I got the i5 processor with 8 GB RAM and 1 TB HDD. It was a big upgrade over my old laptop, because I had a first gen i3 in the old one and this has a Skylake processor.&lt;/p&gt;
-
-&lt;p&gt;I initially tried running Debian via LiveCD on the laptop, but it was an uphill battle getting the newer hardware working. I could have built the latest kernel myself on Debian, but I opted to install Arch. Most of the hardware ended up working fine with the 4.3.1 kernel that was in Arch testing at the time. I still ended up compiling the 4.4.0-rc3 kernel to get the very last outstanding hardware working, such as HDMI output.&lt;/p&gt;
-
-&lt;p&gt;Don&amp;rsquo;t forget to enable the virtualization option in the UEFI if you are going to use KVM.&lt;/p&gt;
 </description>
     </item>
     

@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Joseph Bisch">
+
+
+    <title>Finding a Bug in SQLite by Fuzzing osquery - http://josephbisch.com/</title>
+    <link rel="canonical" href="http://josephbisch.com/post/2016-12-02-finding-a-bug-in-sqlite-by-fuzzing-osquery/">
+    
+    <link href="http://josephbisch.com/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://josephbisch.com/css/font-awesome.css" rel="stylesheet">
+    <link href="http://josephbisch.com/css/custom.css" rel="stylesheet">
+
+    
+</head>
+
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle Navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="http://josephbisch.com/">Joseph Bisch</a>
+            </div>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="http://josephbisch.com/post/">Post Index</a></li>
+		    <li><a href="http://josephbisch.com/tags/">Tag Index</a></li>
+                    <li><a href="http://josephbisch.com/contact/">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="well well-sm">
+                    <h3>Finding a Bug in SQLite by Fuzzing osquery<br> <small></small></h3>
+                    <hr>
+                    
+
+<h2 id="background:3b6ab313300ed0057754ae8e4b163213">Background</h2>
+
+<p>While fuzzing osquery using afl, I encountered a bug in SQLite.</p>
+
+<h2 id="investigation-of-the-bug:3b6ab313300ed0057754ae8e4b163213">Investigation of the Bug</h2>
+
+<p>The bug was reproducible using <code>printf &quot;select * from routes where destination ;VACUUM '::1';\n&quot; | osqueryi</code>. Using osquery binaries compiled with <a href="https://en.wikipedia.org/wiki/AddressSanitizer">ASan</a>, I got a heap-use-after-free report when running the osqueryi program as demonstrated in the previous sentence.</p>
+
+<p>The following is the ASan output:</p>
+
+<pre><code>=================================================================
+==1605==ERROR: AddressSanitizer: heap-use-after-free on address 0x61100000c780 at pc 0x7f9715797141 bp 0x7ffd45cd3050 sp 0x7ffd45cd3048
+READ of size 8 at 0x61100000c780 thread T0
+    #0 0x7f9715797140 in std::_Hashtable&lt;unsigned long, std::pair&lt;unsigned long const, std::vector&lt;std::pair&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, osquery::Constraint&gt;, std::allocator&lt;std::pair&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, osquery::Constraint&gt; &gt; &gt; &gt;, std::allocator&lt;std::pair&lt;unsigned long const, std::vector&lt;std::pair&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, osquery::Constraint&gt;, std::allocator&lt;std::pair&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, osquery::Constraint&gt; &gt; &gt; &gt; &gt;, std::__detail::_Select1st, std::equal_to&lt;unsigned long&gt;, std::hash&lt;unsigned long&gt;, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits&lt;false, false, true&gt; &gt;::_M_begin() const /usr/local/osquery/Cellar/gcc/5.3.0/lib64/gcc/x86_64-unknown-linux-gnu/5.3.0/../../../../include/c++/5.3.0/bits/hashtable.h:370:58
+    #1 0x7f9715797140 in std::_Hashtable&lt;unsigned long, std::pair&lt;unsigned long const, std::vector&lt;std::pair&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, osquery::Constraint&gt;, std::allocator&lt;std::pair&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, osquery::Constraint&gt; &gt; &gt; &gt;, std::allocator&lt;std::pair&lt;unsigned long const, std::vector&lt;std::pair&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, osquery::Constraint&gt;, std::allocator&lt;std::pair&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, osquery::Constraint&gt; &gt; &gt; &gt; &gt;, std::__detail::_Select1st, std::equal_to&lt;unsigned long&gt;, std::hash&lt;unsigned long&gt;, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits&lt;false, false, true&gt; &gt;::clear() /usr/local/osquery/Cellar/gcc/5.3.0/lib64/gcc/x86_64-unknown-linux-gnu/5.3.0/../../../../include/c++/5.3.0/bits/hashtable.h:1914
+    #2 0x7f9715797140 in std::unordered_map&lt;unsigned long, std::vector&lt;std::pair&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, osquery::Constraint&gt;, std::allocator&lt;std::pair&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, osquery::Constraint&gt; &gt; &gt;, std::hash&lt;unsigned long&gt;, std::equal_to&lt;unsigned long&gt;, std::allocator&lt;std::pair&lt;unsigned long const, std::vector&lt;std::pair&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, osquery::Constraint&gt;, std::allocator&lt;std::pair&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, osquery::Constraint&gt; &gt; &gt; &gt; &gt; &gt;::clear() /usr/local/osquery/Cellar/gcc/5.3.0/lib64/gcc/x86_64-unknown-linux-gnu/5.3.0/../../../../include/c++/5.3.0/bits/unordered_map.h:568
+    #3 0x7f9715797140 in osquery::SQLiteDBInstance::clearAffectedTables() /vagrant/osquery/sql/sqlite_util.cpp:226
+    #4 0x7f9715796e2b in osquery::SQLiteDBInstance::clearAffectedTables() /vagrant/osquery/sql/sqlite_util.cpp:221:5
+    #5 0x7f9714a1dcb6 in shell_exec(char const*, int (*)(void*, int, char**, char**, int*), callback_data*, char**) /vagrant/osquery/devtools/shell.cpp:900:3
+    #6 0x7f9714a218d0 in osquery::runQuery(callback_data*, char const*) /vagrant/osquery/devtools/shell.cpp:1603:12
+    #7 0x7f9714a218d0 in osquery::launchIntoShell(int, char**) /vagrant/osquery/devtools/shell.cpp:1690
+    #8 0x7f9714a4ca7e in main /vagrant/osquery/main/shell.cpp:117:15
+    #9 0x7f97134a1f44 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x21f44)
+    #10 0x7f9714953d27 in _start (/vagrant/build/trusty/osquery/osqueryi+0x6a6d27)
+
+0x61100000c780 is located 128 bytes inside of 216-byte region [0x61100000c700,0x61100000c7d8)
+freed by thread T0 here:
+    #0 0x7f9714a160bb in operator delete(void*) /tmp/llvm-20160901-473558-1grod1w/llvm-3.8.1.src/projects/compiler-rt/lib/asan/asan_new_delete.cc:94:3
+    #1 0x7f97157fb341 in osquery::tables::sqlite::xDestroy(sqlite3_vtab*) /vagrant/osquery/sql/virtual_table.cpp:115:3
+
+previously allocated by thread T0 here:
+    #0 0x7f9714a15afb in operator new(unsigned long) /tmp/llvm-20160901-473558-1grod1w/llvm-3.8.1.src/projects/compiler-rt/lib/asan/asan_new_delete.cc:62:35
+    #1 0x7f97157fb863 in osquery::tables::sqlite::xCreate(sqlite3*, void*, int, char const* const*, sqlite3_vtab**, char**) /vagrant/osquery/sql/virtual_table.cpp:145:20
+    #2 0x7f9714c649ba in vtabCallConstructor /vagrant/third-party/sqlite3/sqlite3.c:121711:8
+    #3 0x7f9714bba8eb in sqlite3VtabCallCreate /vagrant/third-party/sqlite3/sqlite3.c:121880:10
+    #4 0x7f9714bba8eb in sqlite3VdbeExec /vagrant/third-party/sqlite3/sqlite3.c:83144
+    #5 0x7f9714a9bdea in sqlite3Step /vagrant/third-party/sqlite3/sqlite3.c:75177:10
+    #6 0x7f9714a9bdea in sqlite3_step /vagrant/third-party/sqlite3/sqlite3.c:75238
+    #7 0x7f9714ac51c4 in sqlite3_exec /vagrant/third-party/sqlite3/sqlite3.c:108218:12
+    #8 0x7f9715807cc4 in osquery::attachTableInternal(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::shared_ptr&lt;osquery::SQLiteDBInstance&gt; const&amp;) /vagrant/osquery/sql/virtual_table.cpp:563:10
+    #9 0x7f97158150ad in osquery::attachVirtualTables(std::shared_ptr&lt;osquery::SQLiteDBInstance&gt; const&amp;) /vagrant/osquery/sql/virtual_table.cpp:613:7
+    #10 0x7f971579fd2e in osquery::SQLiteDBManager::getConnection(bool) /vagrant/osquery/sql/sqlite_util.cpp:272:5
+    #11 0x7f9715813a96 in osquery::SQLiteDBManager::get() /vagrant/osquery/sql/sqlite_util.h:139:12
+    #12 0x7f9715813a96 in osquery::attachFunctionInternal(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::function&lt;void (sqlite3_context*, int, Mem**)&gt;) /vagrant/osquery/sql/virtual_table.cpp:586
+    #13 0x7f9714a20441 in osquery::launchIntoShell(int, char**) /vagrant/osquery/devtools/shell.cpp:1646:3
+    #14 0x7f9714a4ca7e in main /vagrant/osquery/main/shell.cpp:117:15
+    #15 0x7f97134a1f44 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x21f44)
+
+SUMMARY: AddressSanitizer: heap-use-after-free /usr/local/osquery/Cellar/gcc/5.3.0/lib64/gcc/x86_64-unknown-linux-gnu/5.3.0/../../../../include/c++/5.3.0/bits/hashtable.h:370:58 in std::_Hashtable&lt;unsigned long, std::pair&lt;unsigned long const, std::vector&lt;std::pair&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, osquery::Constraint&gt;, std::allocator&lt;std::pair&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, osquery::Constraint&gt; &gt; &gt; &gt;, std::allocator&lt;std::pair&lt;unsigned long const, std::vector&lt;std::pair&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, osquery::Constraint&gt;, std::allocator&lt;std::pair&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, osquery::Constraint&gt; &gt; &gt; &gt; &gt;, std::__detail::_Select1st, std::equal_to&lt;unsigned long&gt;, std::hash&lt;unsigned long&gt;, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashta
+Shadow bytes around the buggy address:
+  0x0c227fff98a0: fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd
+  0x0c227fff98b0: fa fa fa fa fa fa fa fa fd fd fd fd fd fd fd fd
+  0x0c227fff98c0: fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd
+  0x0c227fff98d0: fd fd fd fd fd fd fd fa fa fa fa fa fa fa fa fa
+  0x0c227fff98e0: fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd
+=&gt;0x0c227fff98f0:[fd]fd fd fd fd fd fd fd fd fd fd fa fa fa fa fa
+  0x0c227fff9900: fa fa fa fa fa fa fa fa fd fd fd fd fd fd fd fd
+  0x0c227fff9910: fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd
+  0x0c227fff9920: fd fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c227fff9930: fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd
+  0x0c227fff9940: fd fd fd fd fd fd fd fd fd fd fd fd fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Heap right redzone:      fb
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack partial redzone:   f4
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==1605==ABORTING
+</code></pre>
+
+<h2 id="determining-that-it-was-actually-a-sqlite-bug:3b6ab313300ed0057754ae8e4b163213">Determining That it Was Actually a SQLite Bug</h2>
+
+<p>I reported the bug on 2016-11-13, at the time thinking it was a bug with osquery. I looked into the bug, but couldn&rsquo;t determine what exactly osquery was doing wrong that led to the bug. Then on 2016-11-15, I saw a version control check-in for SQLite with hash <a href="https://www.sqlite.org/src/info/c5dbc599b910c02a">c5dbc599b910c02a961675b12b273b8df6d29450</a> that fixes a use-after-free according to the comment. It occured to me that I may be chasing after a bug in osquery, when the bug may actually be in SQLite. So I tried building osquery with the latest check-in of SQLite (that includes that use-after-free fix). I was no longer able to reproduce the bug.</p>
+
+<p>It turns out that the <a href="https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=171">bug</a> was found by Google&rsquo;s <a href="https://github.com/google/oss-fuzz">OSS-Fuzz</a> the previous day (based on their bug report date). So it looks like I found the bug first, but just didn&rsquo;t recognize it as a SQLite bug.</p>
+
+            </div>
+        </div>
+
+        
+        <div class="col-md-3">
+            <div class="well well-sm"> 
+                <h4>December 2, 2016<br>
+                <small>900 words</small></h4>
+                <hr>
+                <strong>Categories</strong>
+                <ul class="list-unstyled">
+                
+                </ul>
+                <hr>
+                <strong>Tags</strong><br>
+                <a class="label label-default" href="http://josephbisch.com/tags/afl">afl</a> <a class="label label-default" href="http://josephbisch.com/tags/osquery">osquery</a> <a class="label label-default" href="http://josephbisch.com/tags/sqlite">sqlite</a> <a class="label label-default" href="http://josephbisch.com/tags/linux">linux</a> 
+            </div>
+                <div class="panel panel-default">
+        <div class="panel-heading" style="padding: 2px 15px;">
+            <h4>Connect. Socialize.</h4>
+        </div>
+        <div class="panel-body">
+            <a href="https://github.com/josephbisch/" class="btn btn-primary btn-xs"><i class="fa fa-github-square fa-2x"></i></a>
+            <a href="https://linkedin.com/in/josephbisch/" class="btn btn-primary btn-xs"><i class="fa fa-linkedin-square fa-2x"></i></a>
+        </div>
+    </div>
+
+        </div>
+    </div>
+        <footer>
+            <div class="row">
+                <hr>
+                <div class="col-sm-12">
+                    <p>&copy; Joseph Bisch 2016</p>
+                </div>
+            </div>
+        </footer>
+
+</div>
+
+    <script src="http://josephbisch.com/js/jquery-1.12.3.min.js"></script>
+    <script src="http://josephbisch.com/js/bootstrap.js"></script>
+</body>
+</html>
+
