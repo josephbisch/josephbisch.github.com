@@ -6,8 +6,27 @@
     <description>Recent content on Joseph Bisch</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 02 Dec 2016 13:20:00 -0500</lastBuildDate>
+    <lastBuildDate>Sun, 08 Jan 2017 13:16:00 -0500</lastBuildDate>
     <atom:link href="http://josephbisch.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Public examples of fuzzing related work that I&#39;ve done</title>
+      <link>http://josephbisch.com/fuzzing/</link>
+      <pubDate>Sun, 08 Jan 2017 13:16:00 -0500</pubDate>
+      
+      <guid>http://josephbisch.com/fuzzing/</guid>
+      <description>&lt;ul&gt;
+&lt;li&gt;CVE-2017-5193, CVE-2017-5195, CVE-2017-5196 - Three CVEs in irssi - &lt;a href=&#34;https://irssi.org/security/irssi_sa_2017_01.txt&#34;&gt;https://irssi.org/security/irssi_sa_2017_01.txt&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;binutils bug #20794 - Heap buffer overflow in readelf - &lt;a href=&#34;https://sourceware.org/bugzilla/show_bug.cgi?id=20794&#34;&gt;https://sourceware.org/bugzilla/show_bug.cgi?id=20794&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;irssi bug #563 - Segfault caused by config file - &lt;a href=&#34;https://github.com/irssi/irssi/issues/563&#34;&gt;https://github.com/irssi/irssi/issues/563&lt;/a&gt; - &lt;a href=&#34;http://josephbisch.com/post/2016-10-30-irssi-bug-563/&#34;&gt;http://josephbisch.com/post/2016-10-30-irssi-bug-563/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;irssi bug #564 - Segfault in config_node_first at get.c:330 - &lt;a href=&#34;https://github.com/irssi/irssi/issues/564&#34;&gt;https://github.com/irssi/irssi/issues/564&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Finding a bug in SQLite by fuzzing osquery - &lt;a href=&#34;http://josephbisch.com/post/2016-12-02-finding-a-bug-in-sqlite-by-fuzzing-osquery/&#34;&gt;http://josephbisch.com/post/2016-12-02-finding-a-bug-in-sqlite-by-fuzzing-osquery/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Add frontend for fuzzing to irssi - &lt;a href=&#34;https://github.com/irssi/irssi/pull/610&#34;&gt;https://github.com/irssi/irssi/pull/610&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Linux kernel BUG at fs/direct-io.c:211! in next-20160930 - &lt;a href=&#34;https://www.spinics.net/lists/linux-fsdevel/msg102630.html&#34;&gt;https://www.spinics.net/lists/linux-fsdevel/msg102630.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Out of bounds read in handle_dot_label in yasm - &lt;a href=&#34;https://tortall.lighthouseapp.com/projects/78676/tickets/305-oob-read-in-handle_dot_label#ticket-305-1&#34;&gt;https://tortall.lighthouseapp.com/projects/78676/tickets/305-oob-read-in-handle_dot_label#ticket-305-1&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Finding a Bug in SQLite by Fuzzing osquery</title>
