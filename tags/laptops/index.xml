@@ -7,7 +7,9 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 13 Dec 2015 20:23:00 -0500</lastBuildDate>
-    <atom:link href="http://josephbisch.com/tags/laptops/index.xml" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="http://josephbisch.com/tags/laptops/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>New Laptop</title>
@@ -19,10 +21,7 @@
 
 &lt;p&gt;I got the i5 processor with 8 GB RAM and 1 TB HDD. It was a big upgrade over my old laptop, because I had a first gen i3 in the old one and this has a Skylake processor.&lt;/p&gt;
 
-&lt;p&gt;I initially tried running Debian via LiveCD on the laptop, but it was an uphill battle getting the newer hardware working. I could have built the latest kernel myself on Debian, but I opted to install Arch. Most of the hardware ended up working fine with the 4.3.1 kernel that was in Arch testing at the time. I still ended up compiling the 4.4.0-rc3 kernel to get the very last outstanding hardware working, such as HDMI output.&lt;/p&gt;
-
-&lt;p&gt;Don&amp;rsquo;t forget to enable the virtualization option in the UEFI if you are going to use KVM.&lt;/p&gt;
-</description>
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>

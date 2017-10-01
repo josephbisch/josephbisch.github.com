@@ -7,7 +7,9 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 02 Dec 2016 13:20:00 -0500</lastBuildDate>
-    <atom:link href="http://josephbisch.com/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="http://josephbisch.com/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Finding a Bug in SQLite by Fuzzing osquery</title>
@@ -15,99 +17,15 @@
       <pubDate>Fri, 02 Dec 2016 13:20:00 -0500</pubDate>
       
       <guid>http://josephbisch.com/post/2016-12-02-finding-a-bug-in-sqlite-by-fuzzing-osquery/</guid>
-      <description>
-
-&lt;h2 id=&#34;background:3b6ab313300ed0057754ae8e4b163213&#34;&gt;Background&lt;/h2&gt;
+      <description>&lt;h2 id=&#34;background&#34;&gt;Background&lt;/h2&gt;
 
 &lt;p&gt;While fuzzing osquery using afl, I encountered a bug in SQLite.&lt;/p&gt;
 
-&lt;h2 id=&#34;investigation-of-the-bug:3b6ab313300ed0057754ae8e4b163213&#34;&gt;Investigation of the Bug&lt;/h2&gt;
+&lt;h2 id=&#34;investigation-of-the-bug&#34;&gt;Investigation of the Bug&lt;/h2&gt;
 
 &lt;p&gt;The bug was reproducible using &lt;code&gt;printf &amp;quot;select * from routes where destination ;VACUUM &#39;::1&#39;;\n&amp;quot; | osqueryi&lt;/code&gt;. Using osquery binaries compiled with &lt;a href=&#34;https://en.wikipedia.org/wiki/AddressSanitizer&#34;&gt;ASan&lt;/a&gt;, I got a heap-use-after-free report when running the osqueryi program as demonstrated in the previous sentence.&lt;/p&gt;
 
-&lt;p&gt;The following is the ASan output:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;=================================================================
-==1605==ERROR: AddressSanitizer: heap-use-after-free on address 0x61100000c780 at pc 0x7f9715797141 bp 0x7ffd45cd3050 sp 0x7ffd45cd3048
-READ of size 8 at 0x61100000c780 thread T0
-    #0 0x7f9715797140 in std::_Hashtable&amp;lt;unsigned long, std::pair&amp;lt;unsigned long const, std::vector&amp;lt;std::pair&amp;lt;std::__cxx11::basic_string&amp;lt;char, std::char_traits&amp;lt;char&amp;gt;, std::allocator&amp;lt;char&amp;gt; &amp;gt;, osquery::Constraint&amp;gt;, std::allocator&amp;lt;std::pair&amp;lt;std::__cxx11::basic_string&amp;lt;char, std::char_traits&amp;lt;char&amp;gt;, std::allocator&amp;lt;char&amp;gt; &amp;gt;, osquery::Constraint&amp;gt; &amp;gt; &amp;gt; &amp;gt;, std::allocator&amp;lt;std::pair&amp;lt;unsigned long const, std::vector&amp;lt;std::pair&amp;lt;std::__cxx11::basic_string&amp;lt;char, std::char_traits&amp;lt;char&amp;gt;, std::allocator&amp;lt;char&amp;gt; &amp;gt;, osquery::Constraint&amp;gt;, std::allocator&amp;lt;std::pair&amp;lt;std::__cxx11::basic_string&amp;lt;char, std::char_traits&amp;lt;char&amp;gt;, std::allocator&amp;lt;char&amp;gt; &amp;gt;, osquery::Constraint&amp;gt; &amp;gt; &amp;gt; &amp;gt; &amp;gt;, std::__detail::_Select1st, std::equal_to&amp;lt;unsigned long&amp;gt;, std::hash&amp;lt;unsigned long&amp;gt;, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits&amp;lt;false, false, true&amp;gt; &amp;gt;::_M_begin() const /usr/local/osquery/Cellar/gcc/5.3.0/lib64/gcc/x86_64-unknown-linux-gnu/5.3.0/../../../../include/c++/5.3.0/bits/hashtable.h:370:58
-    #1 0x7f9715797140 in std::_Hashtable&amp;lt;unsigned long, std::pair&amp;lt;unsigned long const, std::vector&amp;lt;std::pair&amp;lt;std::__cxx11::basic_string&amp;lt;char, std::char_traits&amp;lt;char&amp;gt;, std::allocator&amp;lt;char&amp;gt; &amp;gt;, osquery::Constraint&amp;gt;, std::allocator&amp;lt;std::pair&amp;lt;std::__cxx11::basic_string&amp;lt;char, std::char_traits&amp;lt;char&amp;gt;, std::allocator&amp;lt;char&amp;gt; &amp;gt;, osquery::Constraint&amp;gt; &amp;gt; &amp;gt; &amp;gt;, std::allocator&amp;lt;std::pair&amp;lt;unsigned long const, std::vector&amp;lt;std::pair&amp;lt;std::__cxx11::basic_string&amp;lt;char, std::char_traits&amp;lt;char&amp;gt;, std::allocator&amp;lt;char&amp;gt; &amp;gt;, osquery::Constraint&amp;gt;, std::allocator&amp;lt;std::pair&amp;lt;std::__cxx11::basic_string&amp;lt;char, std::char_traits&amp;lt;char&amp;gt;, std::allocator&amp;lt;char&amp;gt; &amp;gt;, osquery::Constraint&amp;gt; &amp;gt; &amp;gt; &amp;gt; &amp;gt;, std::__detail::_Select1st, std::equal_to&amp;lt;unsigned long&amp;gt;, std::hash&amp;lt;unsigned long&amp;gt;, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits&amp;lt;false, false, true&amp;gt; &amp;gt;::clear() /usr/local/osquery/Cellar/gcc/5.3.0/lib64/gcc/x86_64-unknown-linux-gnu/5.3.0/../../../../include/c++/5.3.0/bits/hashtable.h:1914
-    #2 0x7f9715797140 in std::unordered_map&amp;lt;unsigned long, std::vector&amp;lt;std::pair&amp;lt;std::__cxx11::basic_string&amp;lt;char, std::char_traits&amp;lt;char&amp;gt;, std::allocator&amp;lt;char&amp;gt; &amp;gt;, osquery::Constraint&amp;gt;, std::allocator&amp;lt;std::pair&amp;lt;std::__cxx11::basic_string&amp;lt;char, std::char_traits&amp;lt;char&amp;gt;, std::allocator&amp;lt;char&amp;gt; &amp;gt;, osquery::Constraint&amp;gt; &amp;gt; &amp;gt;, std::hash&amp;lt;unsigned long&amp;gt;, std::equal_to&amp;lt;unsigned long&amp;gt;, std::allocator&amp;lt;std::pair&amp;lt;unsigned long const, std::vector&amp;lt;std::pair&amp;lt;std::__cxx11::basic_string&amp;lt;char, std::char_traits&amp;lt;char&amp;gt;, std::allocator&amp;lt;char&amp;gt; &amp;gt;, osquery::Constraint&amp;gt;, std::allocator&amp;lt;std::pair&amp;lt;std::__cxx11::basic_string&amp;lt;char, std::char_traits&amp;lt;char&amp;gt;, std::allocator&amp;lt;char&amp;gt; &amp;gt;, osquery::Constraint&amp;gt; &amp;gt; &amp;gt; &amp;gt; &amp;gt; &amp;gt;::clear() /usr/local/osquery/Cellar/gcc/5.3.0/lib64/gcc/x86_64-unknown-linux-gnu/5.3.0/../../../../include/c++/5.3.0/bits/unordered_map.h:568
-    #3 0x7f9715797140 in osquery::SQLiteDBInstance::clearAffectedTables() /vagrant/osquery/sql/sqlite_util.cpp:226
-    #4 0x7f9715796e2b in osquery::SQLiteDBInstance::clearAffectedTables() /vagrant/osquery/sql/sqlite_util.cpp:221:5
-    #5 0x7f9714a1dcb6 in shell_exec(char const*, int (*)(void*, int, char**, char**, int*), callback_data*, char**) /vagrant/osquery/devtools/shell.cpp:900:3
-    #6 0x7f9714a218d0 in osquery::runQuery(callback_data*, char const*) /vagrant/osquery/devtools/shell.cpp:1603:12
-    #7 0x7f9714a218d0 in osquery::launchIntoShell(int, char**) /vagrant/osquery/devtools/shell.cpp:1690
-    #8 0x7f9714a4ca7e in main /vagrant/osquery/main/shell.cpp:117:15
-    #9 0x7f97134a1f44 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x21f44)
-    #10 0x7f9714953d27 in _start (/vagrant/build/trusty/osquery/osqueryi+0x6a6d27)
-
-0x61100000c780 is located 128 bytes inside of 216-byte region [0x61100000c700,0x61100000c7d8)
-freed by thread T0 here:
-    #0 0x7f9714a160bb in operator delete(void*) /tmp/llvm-20160901-473558-1grod1w/llvm-3.8.1.src/projects/compiler-rt/lib/asan/asan_new_delete.cc:94:3
-    #1 0x7f97157fb341 in osquery::tables::sqlite::xDestroy(sqlite3_vtab*) /vagrant/osquery/sql/virtual_table.cpp:115:3
-
-previously allocated by thread T0 here:
-    #0 0x7f9714a15afb in operator new(unsigned long) /tmp/llvm-20160901-473558-1grod1w/llvm-3.8.1.src/projects/compiler-rt/lib/asan/asan_new_delete.cc:62:35
-    #1 0x7f97157fb863 in osquery::tables::sqlite::xCreate(sqlite3*, void*, int, char const* const*, sqlite3_vtab**, char**) /vagrant/osquery/sql/virtual_table.cpp:145:20
-    #2 0x7f9714c649ba in vtabCallConstructor /vagrant/third-party/sqlite3/sqlite3.c:121711:8
-    #3 0x7f9714bba8eb in sqlite3VtabCallCreate /vagrant/third-party/sqlite3/sqlite3.c:121880:10
-    #4 0x7f9714bba8eb in sqlite3VdbeExec /vagrant/third-party/sqlite3/sqlite3.c:83144
-    #5 0x7f9714a9bdea in sqlite3Step /vagrant/third-party/sqlite3/sqlite3.c:75177:10
-    #6 0x7f9714a9bdea in sqlite3_step /vagrant/third-party/sqlite3/sqlite3.c:75238
-    #7 0x7f9714ac51c4 in sqlite3_exec /vagrant/third-party/sqlite3/sqlite3.c:108218:12
-    #8 0x7f9715807cc4 in osquery::attachTableInternal(std::__cxx11::basic_string&amp;lt;char, std::char_traits&amp;lt;char&amp;gt;, std::allocator&amp;lt;char&amp;gt; &amp;gt; const&amp;amp;, std::__cxx11::basic_string&amp;lt;char, std::char_traits&amp;lt;char&amp;gt;, std::allocator&amp;lt;char&amp;gt; &amp;gt; const&amp;amp;, std::shared_ptr&amp;lt;osquery::SQLiteDBInstance&amp;gt; const&amp;amp;) /vagrant/osquery/sql/virtual_table.cpp:563:10
-    #9 0x7f97158150ad in osquery::attachVirtualTables(std::shared_ptr&amp;lt;osquery::SQLiteDBInstance&amp;gt; const&amp;amp;) /vagrant/osquery/sql/virtual_table.cpp:613:7
-    #10 0x7f971579fd2e in osquery::SQLiteDBManager::getConnection(bool) /vagrant/osquery/sql/sqlite_util.cpp:272:5
-    #11 0x7f9715813a96 in osquery::SQLiteDBManager::get() /vagrant/osquery/sql/sqlite_util.h:139:12
-    #12 0x7f9715813a96 in osquery::attachFunctionInternal(std::__cxx11::basic_string&amp;lt;char, std::char_traits&amp;lt;char&amp;gt;, std::allocator&amp;lt;char&amp;gt; &amp;gt; const&amp;amp;, std::function&amp;lt;void (sqlite3_context*, int, Mem**)&amp;gt;) /vagrant/osquery/sql/virtual_table.cpp:586
-    #13 0x7f9714a20441 in osquery::launchIntoShell(int, char**) /vagrant/osquery/devtools/shell.cpp:1646:3
-    #14 0x7f9714a4ca7e in main /vagrant/osquery/main/shell.cpp:117:15
-    #15 0x7f97134a1f44 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x21f44)
-
-SUMMARY: AddressSanitizer: heap-use-after-free /usr/local/osquery/Cellar/gcc/5.3.0/lib64/gcc/x86_64-unknown-linux-gnu/5.3.0/../../../../include/c++/5.3.0/bits/hashtable.h:370:58 in std::_Hashtable&amp;lt;unsigned long, std::pair&amp;lt;unsigned long const, std::vector&amp;lt;std::pair&amp;lt;std::__cxx11::basic_string&amp;lt;char, std::char_traits&amp;lt;char&amp;gt;, std::allocator&amp;lt;char&amp;gt; &amp;gt;, osquery::Constraint&amp;gt;, std::allocator&amp;lt;std::pair&amp;lt;std::__cxx11::basic_string&amp;lt;char, std::char_traits&amp;lt;char&amp;gt;, std::allocator&amp;lt;char&amp;gt; &amp;gt;, osquery::Constraint&amp;gt; &amp;gt; &amp;gt; &amp;gt;, std::allocator&amp;lt;std::pair&amp;lt;unsigned long const, std::vector&amp;lt;std::pair&amp;lt;std::__cxx11::basic_string&amp;lt;char, std::char_traits&amp;lt;char&amp;gt;, std::allocator&amp;lt;char&amp;gt; &amp;gt;, osquery::Constraint&amp;gt;, std::allocator&amp;lt;std::pair&amp;lt;std::__cxx11::basic_string&amp;lt;char, std::char_traits&amp;lt;char&amp;gt;, std::allocator&amp;lt;char&amp;gt; &amp;gt;, osquery::Constraint&amp;gt; &amp;gt; &amp;gt; &amp;gt; &amp;gt;, std::__detail::_Select1st, std::equal_to&amp;lt;unsigned long&amp;gt;, std::hash&amp;lt;unsigned long&amp;gt;, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashta
-Shadow bytes around the buggy address:
-  0x0c227fff98a0: fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd
-  0x0c227fff98b0: fa fa fa fa fa fa fa fa fd fd fd fd fd fd fd fd
-  0x0c227fff98c0: fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd
-  0x0c227fff98d0: fd fd fd fd fd fd fd fa fa fa fa fa fa fa fa fa
-  0x0c227fff98e0: fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd
-=&amp;gt;0x0c227fff98f0:[fd]fd fd fd fd fd fd fd fd fd fd fa fa fa fa fa
-  0x0c227fff9900: fa fa fa fa fa fa fa fa fd fd fd fd fd fd fd fd
-  0x0c227fff9910: fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd
-  0x0c227fff9920: fd fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
-  0x0c227fff9930: fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd
-  0x0c227fff9940: fd fd fd fd fd fd fd fd fd fd fd fd fa fa fa fa
-Shadow byte legend (one shadow byte represents 8 application bytes):
-  Addressable:           00
-  Partially addressable: 01 02 03 04 05 06 07 
-  Heap left redzone:       fa
-  Heap right redzone:      fb
-  Freed heap region:       fd
-  Stack left redzone:      f1
-  Stack mid redzone:       f2
-  Stack right redzone:     f3
-  Stack partial redzone:   f4
-  Stack after return:      f5
-  Stack use after scope:   f8
-  Global redzone:          f9
-  Global init order:       f6
-  Poisoned by user:        f7
-  Container overflow:      fc
-  Array cookie:            ac
-  Intra object redzone:    bb
-  ASan internal:           fe
-  Left alloca redzone:     ca
-  Right alloca redzone:    cb
-==1605==ABORTING
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;determining-that-it-was-actually-a-sqlite-bug:3b6ab313300ed0057754ae8e4b163213&#34;&gt;Determining That it Was Actually a SQLite Bug&lt;/h2&gt;
-
-&lt;p&gt;I reported the bug on 2016-11-13, at the time thinking it was a bug with osquery. I looked into the bug, but couldn&amp;rsquo;t determine what exactly osquery was doing wrong that led to the bug. Then on 2016-11-15, I saw a version control check-in for SQLite with hash &lt;a href=&#34;https://www.sqlite.org/src/info/c5dbc599b910c02a&#34;&gt;c5dbc599b910c02a961675b12b273b8df6d29450&lt;/a&gt; that fixes a use-after-free according to the comment. It occured to me that I may be chasing after a bug in osquery, when the bug may actually be in SQLite. So I tried building osquery with the latest check-in of SQLite (that includes that use-after-free fix). I was no longer able to reproduce the bug.&lt;/p&gt;
-
-&lt;p&gt;It turns out that the &lt;a href=&#34;https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=171&#34;&gt;bug&lt;/a&gt; was found by Google&amp;rsquo;s &lt;a href=&#34;https://github.com/google/oss-fuzz&#34;&gt;OSS-Fuzz&lt;/a&gt; the previous day (based on their bug report date). So it looks like I found the bug first, but just didn&amp;rsquo;t recognize it as a SQLite bug.&lt;/p&gt;
-</description>
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -116,146 +34,13 @@ Shadow byte legend (one shadow byte represents 8 application bytes):
       <pubDate>Sun, 30 Oct 2016 17:20:00 -0400</pubDate>
       
       <guid>http://josephbisch.com/post/2016-10-30-irssi-bug-563/</guid>
-      <description>
-
-&lt;h2 id=&#34;background:c6a9023264dec589d3ed6645038cfede&#34;&gt;Background&lt;/h2&gt;
+      <description>&lt;h2 id=&#34;background&#34;&gt;Background&lt;/h2&gt;
 
 &lt;p&gt;While fuzzing irssi&amp;rsquo;s config file parser using afl, I encountered a bug that I reported and became &lt;a href=&#34;https://github.com/irssi/irssi/issues/563&#34;&gt;issue #563&lt;/a&gt; for irssi on GitHub. I am going to perform an analysis of the bug and my solution to the bug.&lt;/p&gt;
 
 &lt;p&gt;All I had to do to build irssi with afl was add &lt;code&gt;CC=/path/to/afl/afl-gcc&lt;/code&gt; to the configure script invocation. After building irssi, I started running &lt;code&gt;irssi --config file.cfg&lt;/code&gt; with afl, allowing afl to pass in the configuration file it generates in place of file.cfg. All that can be done by following a guide that covers how to use afl.&lt;/p&gt;
 
-&lt;p&gt;After running afl for a while, I ended up with a number of crashes. The input that caused the first crash minimized to the following:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;0 0
-chatnets{0&amp;quot;&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Running that input through irssi outside of the context of afl yielded a coredump that I was able to give to gdb to get a backtrace.&lt;/p&gt;
-
-&lt;p&gt;I reported the bug, including the minimized input, the backtrace, and the commit I was fuzzing and it became &lt;a href=&#34;https://github.com/irssi/irssi/issues/563&#34;&gt;issue #563&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;After going through some more of the crashes I found, I ended up with two more minimized inputs that appeared to be caused by the same issue.&lt;/p&gt;
-
-&lt;h2 id=&#34;debugging-with-gdb:c6a9023264dec589d3ed6645038cfede&#34;&gt;Debugging with gdb&lt;/h2&gt;
-
-&lt;p&gt;We will start with the backtrace:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;(gdb) bt
-#0  0x00007f2a7a92c693 in g_slist_last () from /usr/lib/libglib-2.0.so.0
-#1  0x00007f2a7a92c6df in g_slist_append () from /usr/lib/libglib-2.0.so.0
-#2  0x0000000000494d62 in config_node_set_str (rec=0x16f6790, parent=parent@entry=0x16f7ac0, key=key@entry=0x4a4100 &amp;quot;type&amp;quot;, value=0x16ff490 &amp;quot;IRC&amp;quot;) at set.c:119
-#3  0x000000000047cf5e in chatnet_read (node=0x16f7ac0) at chatnets.c:146
-#4  0x000000000047d14a in read_chatnets () at chatnets.c:174
-#5  0x000000000048f083 in signal_emit_real (rec=rec@entry=0x16f84b0, params=params@entry=0, va=va@entry=0x7ffcaf583948, first_hook=&amp;lt;optimized out&amp;gt;) at signals.c:242
-#6  0x000000000048f4ae in signal_emit (signal=signal@entry=0x4a617e &amp;quot;irssi init read settings&amp;quot;, params=params@entry=0) at signals.c:286
-#7  0x000000000043ef5f in fe_common_core_finish_init () at fe-common-core.c:426
-#8  0x000000000042a29b in textui_finish_init () at irssi.c:197
-#9  0x000000000042a497 in main (argc=&amp;lt;optimized out&amp;gt;, argv=&amp;lt;optimized out&amp;gt;) at irssi.c:314
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Seeing that the last function called that is part of irssi itself is config_node_set_str, that looks like a good starting place.&lt;/p&gt;
-
-&lt;p&gt;Let&amp;rsquo;s see what that line looks like:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;(gdb) list set.c:119
-114			if (g_strcmp0(node-&amp;gt;value, value) == 0)
-115				return;
-116	                g_free(node-&amp;gt;value);
-117		} else {
-118			node = g_new0(CONFIG_NODE, 1);
-119			parent-&amp;gt;value = g_slist_append(parent-&amp;gt;value, node);
-120	
-121			node-&amp;gt;type = no_key ? NODE_TYPE_VALUE : NODE_TYPE_KEY;
-122			node-&amp;gt;key = no_key ? NULL : g_strdup(key);
-123		}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;We can see that the &lt;code&gt;g_slist_append&lt;/code&gt; is taking in parameters of parent-&amp;gt;value and node.&lt;/p&gt;
-
-&lt;p&gt;What if we print node?&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;(gdb) frame 2
-#2  0x0000000000494d62 in config_node_set_str (rec=0x16f6790, parent=parent@entry=0x16f7ac0, key=key@entry=0x4a4100 &amp;quot;type&amp;quot;, value=0x16ff490 &amp;quot;IRC&amp;quot;) at set.c:119
-119			parent-&amp;gt;value = g_slist_append(parent-&amp;gt;value, node);
-(gdb) p node
-$1 = (CONFIG_NODE *) 0x1795ff0
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;We see that node is a CONFIG_NODE pointer.&lt;/p&gt;
-
-&lt;p&gt;How about parent-&amp;gt;value?&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;(gdb) p parent-&amp;gt;value
-$2 = (void *) 0x16f7bd0
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;We get a void pointer. We have no type info about the pointer. Looking at the &lt;a href=&#34;https://developer.gnome.org/glib/stable/glib-Singly-Linked-Lists.html#g-slist-append&#34;&gt;GLib documentation&lt;/a&gt;, it seems that the first parameter to &lt;code&gt;g_slist_append&lt;/code&gt; is expected to be a GSList pointer.&lt;/p&gt;
-
-&lt;p&gt;What if we interpret the void pointer as a GSList pointer?&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;(gdb) p (GSList *)(parent-&amp;gt;value)
-$3 = 0x16f7bd0 = {0x7f2a79f60030, 0x7f2a79f67c58 &amp;lt;main_arena+376&amp;gt;, 0x7f2a79f67c48 &amp;lt;main_arena+360&amp;gt;, 0x7f2a79f67c38 &amp;lt;main_arena+344&amp;gt;, 0x7f2a79f67c28 &amp;lt;main_arena+328&amp;gt;, 0x7f2a79f67c18 &amp;lt;main_arena+312&amp;gt;, 
-  0x7f2a79f67c08 &amp;lt;main_arena+296&amp;gt;, 0x7f2a79f67bf8 &amp;lt;main_arena+280&amp;gt;, 0x7f2a79f67be8 &amp;lt;main_arena+264&amp;gt;, 0x7f2a79f67bd8 &amp;lt;main_arena+248&amp;gt;, 0x7f2a79f67bc8 &amp;lt;main_arena+232&amp;gt;, 0x7f2a79f67bb8 &amp;lt;main_arena+216&amp;gt;, 
-  0x7f2a79f67ba8 &amp;lt;main_arena+200&amp;gt;, 0x7f2a79f67b98 &amp;lt;main_arena+184&amp;gt;, 0x7f2a79f67b88 &amp;lt;main_arena+168&amp;gt;, 0x7f2a79f67b78 &amp;lt;main_arena+152&amp;gt;, 0x7f2a79f67b68 &amp;lt;main_arena+136&amp;gt;, 0x7f2a79f67b58 &amp;lt;main_arena+120&amp;gt;, 
-  0x7f2a79f67b48 &amp;lt;main_arena+104&amp;gt;, 0x1796120, 0x64, Cannot access memory at address 0x141
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Hm, interesting. Now lets see what happens if we interpret the void pointer as a char pointer?&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;(gdb) p (char *)(parent-&amp;gt;value)
-$4 = 0x16f7bd0 &amp;quot;0&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Ah, so it seems like &lt;code&gt;parent-&amp;gt;value&lt;/code&gt; points to the character &amp;lsquo;0&amp;rsquo; followed by a terminator.&lt;/p&gt;
-
-&lt;p&gt;So one solution is to make sure that parent is a list node before assuming that &lt;code&gt;parent-&amp;gt;value&lt;/code&gt; points to a GSList.&lt;/p&gt;
-
-&lt;p&gt;First we need to backtrack and see where parent is coming from:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;(gdb) l chatnet_read
-130	{
-131	        CHAT_PROTOCOL_REC *proto;
-132		CHATNET_REC *rec;
-133	        char *type;
-134	
-135		if (node == NULL || node-&amp;gt;key == NULL)
-136			return;
-137	
-138		type = config_node_get_str(node, &amp;quot;type&amp;quot;, NULL);
-139		proto = type == NULL ? NULL : chat_protocol_find(type);
-140		if (proto == NULL) {
-141			proto = type == NULL ? chat_protocol_get_default() :
-142				chat_protocol_get_unknown(type);
-143		}
-144	
-145		if (type == NULL)
-146			iconfig_node_set_str(node, &amp;quot;type&amp;quot;, proto-&amp;gt;name);
-147	
-148		rec = proto-&amp;gt;create_chatnet();
-149		rec-&amp;gt;type = module_get_uniq_id(&amp;quot;CHATNET&amp;quot;, 0);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;We see the beginning of the &lt;code&gt;chatnet_read&lt;/code&gt; function. There is a call to &lt;code&gt;iconfig_node_set_str&lt;/code&gt; on line 146, where node is passed as the first parameter, so it will be parent in the context of &lt;code&gt;config_node_set_str&lt;/code&gt;. The &lt;code&gt;iconfig_node_*&lt;/code&gt; functions just seem to actually be &lt;code&gt;#define&lt;/code&gt;s to the corresponding &lt;code&gt;config_node_*&lt;/code&gt; functions with the mainconfig passed in as the first parameter.&lt;/p&gt;
-
-&lt;p&gt;We see on line 135 a check to ensure that &lt;code&gt;node != NULL&lt;/code&gt; and &lt;code&gt;node-&amp;gt;key != NULL&lt;/code&gt; before proceeding, but there isn&amp;rsquo;t a check to make sure node is a list node. So I made the following change:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;diff --git a/src/core/chatnets.c b/src/core/chatnets.c
-index dd4d94b..e0a7a8d 100644
---- a/src/core/chatnets.c
-+++ b/src/core/chatnets.c
-@@ -132,7 +132,7 @@ static void chatnet_read(CONFIG_NODE *node)
- 	CHATNET_REC *rec;
-         char *type;
- 
--	if (node == NULL || node-&amp;gt;key == NULL)
-+	if (node == NULL || node-&amp;gt;key == NULL || !is_node_list(node))
- 		return;
- 
- 	type = config_node_get_str(node, &amp;quot;type&amp;quot;, NULL);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;That change is irssi &lt;a href=&#34;https://github.com/irssi/irssi/pull/570&#34;&gt;PR #570&lt;/a&gt;.&lt;/p&gt;
-</description>
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -268,10 +53,7 @@ index dd4d94b..e0a7a8d 100644
 
 &lt;p&gt;I got the i5 processor with 8 GB RAM and 1 TB HDD. It was a big upgrade over my old laptop, because I had a first gen i3 in the old one and this has a Skylake processor.&lt;/p&gt;
 
-&lt;p&gt;I initially tried running Debian via LiveCD on the laptop, but it was an uphill battle getting the newer hardware working. I could have built the latest kernel myself on Debian, but I opted to install Arch. Most of the hardware ended up working fine with the 4.3.1 kernel that was in Arch testing at the time. I still ended up compiling the 4.4.0-rc3 kernel to get the very last outstanding hardware working, such as HDMI output.&lt;/p&gt;
-
-&lt;p&gt;Don&amp;rsquo;t forget to enable the virtualization option in the UEFI if you are going to use KVM.&lt;/p&gt;
-</description>
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>

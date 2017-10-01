@@ -7,7 +7,9 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 01 Sep 2014 14:02:00 -0400</lastBuildDate>
-    <atom:link href="http://josephbisch.com/tags/debian-soc/index.xml" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="http://josephbisch.com/tags/debian-soc/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Debconf Wrapup</title>
@@ -19,12 +21,7 @@
 
 &lt;p&gt;Debconf14 started with a Meet and Greet before the Welcome Talk. I got to meet people and find out what they do for Debian. I also got to meet other GSoC students that I had only previously interacted with online. During the Meet and Greet I also met one of my mentors for GSoC, Zack. Later in the conference I met another of my mentors, Piotr. Previously I only interacted with Zack and Piotr online.&lt;/p&gt;
 
-&lt;p&gt;On Monday we had the OpenPGP Keysigning. I got to meet people and exchange information so that we could later sign keys. Then on Tuesday I gave my talk about debmetrics as part of the larger GSoC talks.&lt;/p&gt;
-
-&lt;p&gt;During the conference I mostly attended talks. Then on Wednesday we had the daytrip. I went hiking at Multnomah Falls, had lunch at Rooster Rock State Park, and then went to Vista House.&lt;/p&gt;
-
-&lt;p&gt;Later in the conference, Zack and I did some work on debmetrics. We looked at the tests, which had some issues. I was able to fix most of the issues with the tests while I was there at Debconf. We also moved the debmetrics repository under the qa category of repositories. Previously it was a personal repository.&lt;/p&gt;
-</description>
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -37,18 +34,7 @@
 
 &lt;p&gt;You can &lt;a href=&#34;http://metrics.debian.net&#34;&gt;view the web interface at metrics.debian.net&lt;/a&gt;. There is a dynamic interface viewable with JavaScript enabled, and a static interface viewable with JS disabled. I am currently working on the dynamic interface.&lt;/p&gt;
 
-&lt;p&gt;In the weeks since my last blog post I have accomplished a lot. There is support for pull and push metrics. Pull metrics run on the debmetrics server and pull data from some source. Push metrics run on a remote server and push data to the debmetrics server via HTTP POST. There is flask code and the static interface portion uses a general route, so that the flask code does not need to be modified every time a metric is added. There is a makefile that runs manifest2index.py and manifest2orm.py to generate the index page of the web interface and the SQLAlchemy model code respectively. I have a config file that allows the user to set the location of the manifest, pull_scripts, and graph_scripts directories. I have a debmetrics.wsgi file for easy deployment of debmetrics.&lt;/p&gt;
-
-&lt;p&gt;There is a single layout.html that is the base layout for all the other pages.&lt;/p&gt;
-
-&lt;p&gt;Nosetests is used for tests. Sphinx and readthedocs are used for the documentation. I wrote a minified_grabber script that downloads all the JS and css files that are not included with debmetrics itself. That helps make deployment easy.&lt;/p&gt;
-
-&lt;p&gt;If you want to take a look at the code you can &lt;a href=&#34;http://anonscm.debian.org/gitweb/?p=users/josephbisch-guest/debmetrics.git;a=summary&#34;&gt;view the repository&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;I still have more work to do before the end of GSoC, mostly with the dynamic web interface and packaging of debmetrics.&lt;/p&gt;
-
-&lt;p&gt;To keep up to date on my progress, you can either read this blog, or you can read the &lt;a href=&#34;http://lists.alioth.debian.org/mailman/listinfo/soc-coordination&#34;&gt;soc-corrdination mailing list&lt;/a&gt;.&lt;/p&gt;
-</description>
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -59,15 +45,7 @@
       <guid>http://josephbisch.com/post/2014-05-01-gsoc-welcome-package-received/</guid>
       <description>&lt;p&gt;A couple days ago I received my welcome package from Google. The welcome package included a pen and a notepad that has stickers.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://www.josephbisch.com/img/gsoc1.jpg&#34; alt=&#34;Notepad and Pen&#34; /&gt;
-&lt;img src=&#34;http://www.josephbisch.com/img/gsoc2.jpg&#34; alt=&#34;Stickers&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Since my last update I got the repo setup and started working on the specifications. I have been emailing with my mentors to work out the specs.&lt;/p&gt;
-
-&lt;p&gt;You can &lt;a href=&#34;http://anonscm.debian.org/gitweb/?p=users/josephbisch-guest/debmetrics.git;a=summary&#34;&gt;view the git repo&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;To keep up to date on my progress, you can either read this blog, or you can read the &lt;a href=&#34;http://lists.alioth.debian.org/mailman/listinfo/soc-coordination&#34;&gt;soc-corrdination mailing list&lt;/a&gt; once coding starts on the 19th.&lt;/p&gt;
-</description>
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -78,14 +56,7 @@
       <guid>http://josephbisch.com/post/2014-04-22-a-summer-of-code/</guid>
       <description>&lt;p&gt;Yesterday I found out that I was accepted into the Google Summer of Code program. I was accepted by Debian and will be working on a Metrics Portal. You can &lt;a href=&#34;http://bits.debian.org/2014/04/welcome-gsoc-students-2014.html&#34;&gt;view the announcement on the Debian blog&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;The Metrics Portal will have a database that stores historical data on Debian. It will have an interface to add/remove metrics and a web interface to show the metrics graphically. It will utilize cron jobs to update the metrics and generate graphs. The web interface will utilize JavaScript to allow the client to overlay graphs for comparison purposes. An optional task is for me to create a Debian Package of the portal code for easy deployment of the portal.&lt;/p&gt;
-
-&lt;p&gt;I have decided to use jinja2 as the templating language, flot.js as the JavaScript graphing library, JSON for data, SQLAlchemy for database access, and marshmallow to serialize Python objects to JSON for use with flot.&lt;/p&gt;
-
-&lt;p&gt;You can read more about the Metrics Portal by reading the &lt;a href=&#34;https://wiki.debian.org/SummerOfCode2014/Projects/DebianMetricsPortal&#34;&gt;project listing&lt;/a&gt; or by reading &lt;a href=&#34;https://wiki.debian.org/SummerOfCode2014/StudentApplications/JosephBisch&#34;&gt;my proposal&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;To keep up to date on my progress, you can either read this blog, or you can read the &lt;a href=&#34;http://lists.alioth.debian.org/mailman/listinfo/soc-coordination&#34;&gt;soc-corrdination mailing list&lt;/a&gt;.&lt;/p&gt;
-</description>
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>

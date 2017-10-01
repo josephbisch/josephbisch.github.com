@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+	<meta name="generator" content="Hugo 0.27.1" />
     
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -46,6 +47,19 @@
     <div class="row">
         <div class="col-md-9">
         
+            <div class="well well-sm">
+    <h4>
+        <a href="http://josephbisch.com/post/2017-10-01-more-irc-fuzzing/">More IRC Fuzzing</a> <small class="pull-right">Posted on Oct 1, 2017</small><br>
+        <small></small>
+    </h4>
+    <hr>
+    <p>Background These are some results of my recent efforts of fuzzing IRC-related software.
+CVE-2017-14727 in Weechat From the Weechat security page:
+ Date/time conversion specifiers are expanded after replacing buffer local variables in name of log files. In some cases, this can lead to an error in function strftime and a crash caused by the use of an uninitialized buffer. Workaround: Unload the logger plugin: /plugin unload logger
+ Mitre CVE Page</p>
+    <a class="btn btn-primary btn-xs" href="http://josephbisch.com/post/2017-10-01-more-irc-fuzzing/">Read More <span class="fa fa-angle-double-right"></span></a>
+</div>
+        
             
         
             <div class="well well-sm">
@@ -54,14 +68,15 @@
         <small></small>
     </h4>
     <hr>
-    <p><h2 id="background:3b6ab313300ed0057754ae8e4b163213">Background</h2>
+    <p><h2 id="background">Background</h2>
 
 <p>While fuzzing osquery using afl, I encountered a bug in SQLite.</p>
 
-<h2 id="investigation-of-the-bug:3b6ab313300ed0057754ae8e4b163213">Investigation of the Bug</h2>
+<h2 id="investigation-of-the-bug">Investigation of the Bug</h2>
 
 <p>The bug was reproducible using <code>printf &quot;select * from routes where destination ;VACUUM '::1';\n&quot; | osqueryi</code>. Using osquery binaries compiled with <a href="https://en.wikipedia.org/wiki/AddressSanitizer">ASan</a>, I got a heap-use-after-free report when running the osqueryi program as demonstrated in the previous sentence.</p>
-</p>
+
+<p></p></p>
     <a class="btn btn-primary btn-xs" href="http://josephbisch.com/post/2016-12-02-finding-a-bug-in-sqlite-by-fuzzing-osquery/">Read More <span class="fa fa-angle-double-right"></span></a>
 </div>
         
@@ -71,12 +86,13 @@
         <small></small>
     </h4>
     <hr>
-    <p><h2 id="background:c6a9023264dec589d3ed6645038cfede">Background</h2>
+    <p><h2 id="background">Background</h2>
 
 <p>While fuzzing irssi&rsquo;s config file parser using afl, I encountered a bug that I reported and became <a href="https://github.com/irssi/irssi/issues/563">issue #563</a> for irssi on GitHub. I am going to perform an analysis of the bug and my solution to the bug.</p>
 
 <p>All I had to do to build irssi with afl was add <code>CC=/path/to/afl/afl-gcc</code> to the configure script invocation. After building irssi, I started running <code>irssi --config file.cfg</code> with afl, allowing afl to pass in the configuration file it generates in place of file.cfg. All that can be done by following a guide that covers how to use afl.</p>
-</p>
+
+<p></p></p>
     <a class="btn btn-primary btn-xs" href="http://josephbisch.com/post/2016-10-30-irssi-bug-563/">Read More <span class="fa fa-angle-double-right"></span></a>
 </div>
         
@@ -91,7 +107,8 @@
     <p><p>I got a new laptop. It is the HP Pavilion 15t. The model number is 15t-ab100 and the SKU is L8V46AV.</p>
 
 <p>I got the i5 processor with 8 GB RAM and 1 TB HDD. It was a big upgrade over my old laptop, because I had a first gen i3 in the old one and this has a Skylake processor.</p>
-</p>
+
+<p></p></p>
     <a class="btn btn-primary btn-xs" href="http://josephbisch.com/post/2015-12-13-new-laptop/">Read More <span class="fa fa-angle-double-right"></span></a>
 </div>
         
@@ -104,7 +121,8 @@
     <p><p>This article assumes familiarity with the Bitcoin block format.</p>
 
 <p>Namecoin blocks starting with block 19200 may have some extra data in them. These blocks with extra data are called AuxPOW blocks for Auxiliary Proof of Work. The extra data appears between the nonce and txn_count. This extra data appears when a block has been merged-mined for both the Bitcoin and Namecoin networks.</p>
-</p>
+
+<p></p></p>
     <a class="btn btn-primary btn-xs" href="http://josephbisch.com/post/2014-12-15-namecoin-block-format/">Read More <span class="fa fa-angle-double-right"></span></a>
 </div>
         
@@ -117,7 +135,8 @@
     <p><p>I recently installed the program nmcontrol. Doing so was non-trivial, so I am documenting the process I took here.</p>
 
 <p>For those that don&rsquo;t know, nmcontrol is a daemon that communicates with namecoind and provides services. In particular, I wanted to use the DNS service it provides for accessing .bit domain names. The .bit TLD is used by Namecoin. Namecoin is a decentalized key-value store and among its uses is decentalized DNS.</p>
-</p>
+
+<p></p></p>
     <a class="btn btn-primary btn-xs" href="http://josephbisch.com/post/2014-11-23-installing-and-running-nmcontrol/">Read More <span class="fa fa-angle-double-right"></span></a>
 </div>
         
@@ -128,7 +147,8 @@
     </h4>
     <hr>
     <p><p>I got my first package uploaded to Debian this week. That package is winetricks. It was orphaned and I adopted it. Now the lastest version (0.0+20140818+svn1202) is available in sid and should migrate to testing in nine days.</p>
-</p>
+
+<p></p></p>
     <a class="btn btn-primary btn-xs" href="http://josephbisch.com/post/2014-09-04-my-first-package/">Read More <span class="fa fa-angle-double-right"></span></a>
 </div>
         
@@ -141,21 +161,9 @@
     <p><p>Debconf14 was the first Debconf I attended. It was an awesome experience.</p>
 
 <p>Debconf14 started with a Meet and Greet before the Welcome Talk. I got to meet people and find out what they do for Debian. I also got to meet other GSoC students that I had only previously interacted with online. During the Meet and Greet I also met one of my mentors for GSoC, Zack. Later in the conference I met another of my mentors, Piotr. Previously I only interacted with Zack and Piotr online.</p>
-</p>
-    <a class="btn btn-primary btn-xs" href="http://josephbisch.com/post/2014-09-01-debconf-wrapup/">Read More <span class="fa fa-angle-double-right"></span></a>
-</div>
-        
-            <div class="well well-sm">
-    <h4>
-        <a href="http://josephbisch.com/post/2014-07-11-gsoc-update-1/">GSoC Update</a> <small class="pull-right">Posted on Jul 11, 2014</small><br>
-        <small></small>
-    </h4>
-    <hr>
-    <p><p>It has been a couple of months since my last GSoC update and a lot has happened since then.</p>
 
-<p>You can <a href="http://metrics.debian.net">view the web interface at metrics.debian.net</a>. There is a dynamic interface viewable with JavaScript enabled, and a static interface viewable with JS disabled. I am currently working on the dynamic interface.</p>
-</p>
-    <a class="btn btn-primary btn-xs" href="http://josephbisch.com/post/2014-07-11-gsoc-update-1/">Read More <span class="fa fa-angle-double-right"></span></a>
+<p></p></p>
+    <a class="btn btn-primary btn-xs" href="http://josephbisch.com/post/2014-09-01-debconf-wrapup/">Read More <span class="fa fa-angle-double-right"></span></a>
 </div>
         
         </div>

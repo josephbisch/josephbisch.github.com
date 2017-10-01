@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Fuzzing on Joseph Bisch</title>
+    <link>http://josephbisch.com/tags/fuzzing/</link>
+    <description>Recent content in Fuzzing on Joseph Bisch</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 01 Oct 2017 19:40:00 -0400</lastBuildDate>
+    
+	<atom:link href="http://josephbisch.com/tags/fuzzing/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>More IRC Fuzzing</title>
+      <link>http://josephbisch.com/post/2017-10-01-more-irc-fuzzing/</link>
+      <pubDate>Sun, 01 Oct 2017 19:40:00 -0400</pubDate>
+      
+      <guid>http://josephbisch.com/post/2017-10-01-more-irc-fuzzing/</guid>
+      <description>Background These are some results of my recent efforts of fuzzing IRC-related software.
+CVE-2017-14727 in Weechat From the Weechat security page:
+ Date/time conversion specifiers are expanded after replacing buffer local variables in name of log files. In some cases, this can lead to an error in function strftime and a crash caused by the use of an uninitialized buffer. Workaround: Unload the logger plugin: /plugin unload logger
+ Mitre CVE Page</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -48,13 +48,13 @@
             <div class="well well-sm">
                     <h3>Irssi Bug #563<br> <small></small></h3>
                     <hr>
-                    
-
-<h2 id="background:c6a9023264dec589d3ed6645038cfede">Background</h2>
+                    <h2 id="background">Background</h2>
 
 <p>While fuzzing irssi&rsquo;s config file parser using afl, I encountered a bug that I reported and became <a href="https://github.com/irssi/irssi/issues/563">issue #563</a> for irssi on GitHub. I am going to perform an analysis of the bug and my solution to the bug.</p>
 
 <p>All I had to do to build irssi with afl was add <code>CC=/path/to/afl/afl-gcc</code> to the configure script invocation. After building irssi, I started running <code>irssi --config file.cfg</code> with afl, allowing afl to pass in the configuration file it generates in place of file.cfg. All that can be done by following a guide that covers how to use afl.</p>
+
+<p></p>
 
 <p>After running afl for a while, I ended up with a number of crashes. The input that caused the first crash minimized to the following:</p>
 
@@ -68,7 +68,7 @@ chatnets{0&quot;&quot;
 
 <p>After going through some more of the crashes I found, I ended up with two more minimized inputs that appeared to be caused by the same issue.</p>
 
-<h2 id="debugging-with-gdb:c6a9023264dec589d3ed6645038cfede">Debugging with gdb</h2>
+<h2 id="debugging-with-gdb">Debugging with gdb</h2>
 
 <p>We will start with the backtrace:</p>
 
@@ -187,7 +187,6 @@ index dd4d94b..e0a7a8d 100644
 </code></pre>
 
 <p>That change is irssi <a href="https://github.com/irssi/irssi/pull/570">PR #570</a>.</p>
-
             </div>
         </div>
 

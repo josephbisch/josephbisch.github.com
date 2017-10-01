@@ -9,8 +9,8 @@
     <meta name="author" content="Joseph Bisch">
 
 
-    <title>A Summer of Code - http://josephbisch.com/</title>
-    <link rel="canonical" href="http://josephbisch.com/post/2014-04-22-a-summer-of-code/">
+    <title>More IRC Fuzzing - http://josephbisch.com/</title>
+    <link rel="canonical" href="http://josephbisch.com/post/2017-10-01-more-irc-fuzzing/">
     
     <link href="http://josephbisch.com/css/bootstrap.min.css" rel="stylesheet">
     <link href="http://josephbisch.com/css/font-awesome.css" rel="stylesheet">
@@ -46,27 +46,44 @@
     <div class="row">
         <div class="col-md-9">
             <div class="well well-sm">
-                    <h3>A Summer of Code<br> <small></small></h3>
+                    <h3>More IRC Fuzzing<br> <small></small></h3>
                     <hr>
-                    <p>Yesterday I found out that I was accepted into the Google Summer of Code program. I was accepted by Debian and will be working on a Metrics Portal. You can <a href="http://bits.debian.org/2014/04/welcome-gsoc-students-2014.html">view the announcement on the Debian blog</a>.</p>
+                    
 
-<p></p>
+<h2 id="background">Background</h2>
 
-<p>The Metrics Portal will have a database that stores historical data on Debian. It will have an interface to add/remove metrics and a web interface to show the metrics graphically. It will utilize cron jobs to update the metrics and generate graphs. The web interface will utilize JavaScript to allow the client to overlay graphs for comparison purposes. An optional task is for me to create a Debian Package of the portal code for easy deployment of the portal.</p>
+<p>These are some results of my recent efforts of fuzzing IRC-related software.</p>
 
-<p>I have decided to use jinja2 as the templating language, flot.js as the JavaScript graphing library, JSON for data, SQLAlchemy for database access, and marshmallow to serialize Python objects to JSON for use with flot.</p>
+<h2 id="cve-2017-14727-in-weechat">CVE-2017-14727 in Weechat</h2>
 
-<p>You can read more about the Metrics Portal by reading the <a href="https://wiki.debian.org/SummerOfCode2014/Projects/DebianMetricsPortal">project listing</a> or by reading <a href="https://wiki.debian.org/SummerOfCode2014/StudentApplications/JosephBisch">my proposal</a>.</p>
+<p>From the Weechat security page:</p>
 
-<p>To keep up to date on my progress, you can either read this blog, or you can read the <a href="http://lists.alioth.debian.org/mailman/listinfo/soc-coordination">soc-corrdination mailing list</a>.</p>
+<blockquote>
+<p>Date/time conversion specifiers are expanded after replacing buffer local variables in name of log files. In some cases, this can lead to an error in function strftime and a crash caused by the use of an uninitialized buffer.
+Workaround:
+Unload the logger plugin: /plugin unload logger</p>
+</blockquote>
+
+<p><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-14727">Mitre CVE Page</a></p>
+
+<h2 id="crash-in-unrealircd">Crash in UnrealIRCd</h2>
+
+<p>From the UnrealIRCd <a href="https://forums.unrealircd.org/viewtopic.php?f=1&amp;t=8751">forum post</a>:</p>
+
+<blockquote>
+<p>There&rsquo;s a handshake bug can be triggered before the user is fully connected. This allows a user to crash an UnrealIRCd server, even those with restrictions such as password protected hubs. This one has a CVSSv3 score of 7.5 (High): CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H</p>
+</blockquote>
+
+<p>At the time of this post, a CVE ID has not been assigned.</p>
+
             </div>
         </div>
 
         
         <div class="col-md-3">
             <div class="well well-sm"> 
-                <h4>April 22, 2014<br>
-                <small>191 words</small></h4>
+                <h4>October 1, 2017<br>
+                <small>132 words</small></h4>
                 <hr>
                 <strong>Categories</strong>
                 <ul class="list-unstyled">
@@ -74,7 +91,7 @@
                 </ul>
                 <hr>
                 <strong>Tags</strong><br>
-                <a class="label label-default" href="http://josephbisch.com/tags/debian">debian</a> <a class="label label-default" href="http://josephbisch.com/tags/debian-soc">debian-soc</a> 
+                <a class="label label-default" href="http://josephbisch.com/tags/fuzzing">fuzzing</a> <a class="label label-default" href="http://josephbisch.com/tags/irc">irc</a> 
             </div>
                 <div class="panel panel-default">
         <div class="panel-heading" style="padding: 2px 15px;">

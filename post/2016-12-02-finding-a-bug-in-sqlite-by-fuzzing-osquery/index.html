@@ -48,15 +48,15 @@
             <div class="well well-sm">
                     <h3>Finding a Bug in SQLite by Fuzzing osquery<br> <small></small></h3>
                     <hr>
-                    
-
-<h2 id="background:3b6ab313300ed0057754ae8e4b163213">Background</h2>
+                    <h2 id="background">Background</h2>
 
 <p>While fuzzing osquery using afl, I encountered a bug in SQLite.</p>
 
-<h2 id="investigation-of-the-bug:3b6ab313300ed0057754ae8e4b163213">Investigation of the Bug</h2>
+<h2 id="investigation-of-the-bug">Investigation of the Bug</h2>
 
 <p>The bug was reproducible using <code>printf &quot;select * from routes where destination ;VACUUM '::1';\n&quot; | osqueryi</code>. Using osquery binaries compiled with <a href="https://en.wikipedia.org/wiki/AddressSanitizer">ASan</a>, I got a heap-use-after-free report when running the osqueryi program as demonstrated in the previous sentence.</p>
+
+<p></p>
 
 <p>The following is the ASan output:</p>
 
@@ -135,12 +135,11 @@ Shadow byte legend (one shadow byte represents 8 application bytes):
 ==1605==ABORTING
 </code></pre>
 
-<h2 id="determining-that-it-was-actually-a-sqlite-bug:3b6ab313300ed0057754ae8e4b163213">Determining That it Was Actually a SQLite Bug</h2>
+<h2 id="determining-that-it-was-actually-a-sqlite-bug">Determining That it Was Actually a SQLite Bug</h2>
 
 <p>I reported the bug on 2016-11-13, at the time thinking it was a bug with osquery. I looked into the bug, but couldn&rsquo;t determine what exactly osquery was doing wrong that led to the bug. Then on 2016-11-15, I saw a version control check-in for SQLite with hash <a href="https://www.sqlite.org/src/info/c5dbc599b910c02a">c5dbc599b910c02a961675b12b273b8df6d29450</a> that fixes a use-after-free according to the comment. It occured to me that I may be chasing after a bug in osquery, when the bug may actually be in SQLite. So I tried building osquery with the latest check-in of SQLite (that includes that use-after-free fix). I was no longer able to reproduce the bug.</p>
 
 <p>It turns out that the <a href="https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=171">bug</a> was found by Google&rsquo;s <a href="https://github.com/google/oss-fuzz">OSS-Fuzz</a> the previous day (based on their bug report date). So it looks like I found the bug first, but just didn&rsquo;t recognize it as a SQLite bug.</p>
-
             </div>
         </div>
 
