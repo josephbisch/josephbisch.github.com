@@ -6,10 +6,21 @@
     <description>Recent content in Posts on Joseph Bisch</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 01 Oct 2017 19:40:00 -0400</lastBuildDate>
+    <lastBuildDate>Sun, 18 Mar 2018 08:40:00 -0400</lastBuildDate>
     
 	<atom:link href="http://josephbisch.com/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Angel Investing</title>
+      <link>http://josephbisch.com/post/2018-03-18-angel-investing/</link>
+      <pubDate>Sun, 18 Mar 2018 08:40:00 -0400</pubDate>
+      
+      <guid>http://josephbisch.com/post/2018-03-18-angel-investing/</guid>
+      <description>I started angel investing. I have two investments so far.
+Sickweather This company has an app you can download to see what kind of sicknesses are going around in your area. You can also report what you have when you get sick.
+Anyplace This company lets you live in a hotel on a month-to-month contract as an alternative to a traditional apartment lease. Also you don&amp;rsquo;t have to deal with furniture and utilities as you would with an apartment.</description>
+    </item>
     
     <item>
       <title>More IRC Fuzzing</title>

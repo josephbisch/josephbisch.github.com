@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://josephbisch.com/post/2018-03-18-angel-investing/</loc>
+    <lastmod>2018-03-18T08:40:00-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://josephbisch.com/post/2017-10-01-more-irc-fuzzing/</loc>
     <lastmod>2017-10-01T19:40:00-04:00</lastmod>
   </url>
@@ -74,6 +79,12 @@
   </url>
   
   <url>
+    <loc>http://josephbisch.com/tags/angel-investing/</loc>
+    <lastmod>2018-03-18T08:40:00-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://josephbisch.com/tags/arch/</loc>
     <lastmod>2015-12-13T20:23:00-05:00</lastmod>
     <priority>0</priority>
@@ -115,6 +126,12 @@
   </url>
   
   <url>
+    <loc>http://josephbisch.com/tags/investing/</loc>
+    <lastmod>2018-03-18T08:40:00-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://josephbisch.com/tags/irc/</loc>
     <lastmod>2017-10-01T19:40:00-04:00</lastmod>
     <priority>0</priority>
@@ -128,7 +145,7 @@
   
   <url>
     <loc>http://josephbisch.com/</loc>
-    <lastmod>2017-10-01T19:40:00-04:00</lastmod>
+    <lastmod>2018-03-18T08:40:00-04:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -158,7 +175,7 @@
   
   <url>
     <loc>http://josephbisch.com/post/</loc>
-    <lastmod>2017-10-01T19:40:00-04:00</lastmod>
+    <lastmod>2018-03-18T08:40:00-04:00</lastmod>
     <priority>0</priority>
   </url>
   
