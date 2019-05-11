@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Cryptocurrency on Joseph Bisch</title>
+    <title>cryptocurrency on Joseph Bisch</title>
     <link>http://josephbisch.com/tags/cryptocurrency/</link>
-    <description>Recent content in Cryptocurrency on Joseph Bisch</description>
+    <description>Recent content in cryptocurrency on Joseph Bisch</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 15 Dec 2014 07:25:00 -0500</lastBuildDate>
@@ -19,9 +19,7 @@
       <guid>http://josephbisch.com/post/2014-12-15-namecoin-block-format/</guid>
       <description>&lt;p&gt;This article assumes familiarity with the Bitcoin block format.&lt;/p&gt;
 
-&lt;p&gt;Namecoin blocks starting with block 19200 may have some extra data in them. These blocks with extra data are called AuxPOW blocks for Auxiliary Proof of Work. The extra data appears between the nonce and txn_count. This extra data appears when a block has been merged-mined for both the Bitcoin and Namecoin networks.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;Namecoin blocks starting with block 19200 may have some extra data in them. These blocks with extra data are called AuxPOW blocks for Auxiliary Proof of Work. The extra data appears between the nonce and txn_count. This extra data appears when a block has been merged-mined for both the Bitcoin and Namecoin networks.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -32,9 +30,7 @@
       <guid>http://josephbisch.com/post/2014-11-23-installing-and-running-nmcontrol/</guid>
       <description>&lt;p&gt;I recently installed the program nmcontrol. Doing so was non-trivial, so I am documenting the process I took here.&lt;/p&gt;
 
-&lt;p&gt;For those that don&amp;rsquo;t know, nmcontrol is a daemon that communicates with namecoind and provides services. In particular, I wanted to use the DNS service it provides for accessing .bit domain names. The .bit TLD is used by Namecoin. Namecoin is a decentalized key-value store and among its uses is decentalized DNS.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;For those that don&amp;rsquo;t know, nmcontrol is a daemon that communicates with namecoind and provides services. In particular, I wanted to use the DNS service it provides for accessing .bit domain names. The .bit TLD is used by Namecoin. Namecoin is a decentalized key-value store and among its uses is decentalized DNS.&lt;/p&gt;</description>
     </item>
     
   </channel>

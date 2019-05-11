@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Linux on Joseph Bisch</title>
+    <title>linux on Joseph Bisch</title>
     <link>http://josephbisch.com/tags/linux/</link>
-    <description>Recent content in Linux on Joseph Bisch</description>
+    <description>Recent content in linux on Joseph Bisch</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 02 Dec 2016 13:20:00 -0500</lastBuildDate>
@@ -23,9 +23,7 @@
 
 &lt;h2 id=&#34;investigation-of-the-bug&#34;&gt;Investigation of the Bug&lt;/h2&gt;
 
-&lt;p&gt;The bug was reproducible using &lt;code&gt;printf &amp;quot;select * from routes where destination ;VACUUM &#39;::1&#39;;\n&amp;quot; | osqueryi&lt;/code&gt;. Using osquery binaries compiled with &lt;a href=&#34;https://en.wikipedia.org/wiki/AddressSanitizer&#34;&gt;ASan&lt;/a&gt;, I got a heap-use-after-free report when running the osqueryi program as demonstrated in the previous sentence.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;The bug was reproducible using &lt;code&gt;printf &amp;quot;select * from routes where destination ;VACUUM &#39;::1&#39;;\n&amp;quot; | osqueryi&lt;/code&gt;. Using osquery binaries compiled with &lt;a href=&#34;https://en.wikipedia.org/wiki/AddressSanitizer&#34;&gt;ASan&lt;/a&gt;, I got a heap-use-after-free report when running the osqueryi program as demonstrated in the previous sentence.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -38,9 +36,7 @@
 
 &lt;p&gt;While fuzzing irssi&amp;rsquo;s config file parser using afl, I encountered a bug that I reported and became &lt;a href=&#34;https://github.com/irssi/irssi/issues/563&#34;&gt;issue #563&lt;/a&gt; for irssi on GitHub. I am going to perform an analysis of the bug and my solution to the bug.&lt;/p&gt;
 
-&lt;p&gt;All I had to do to build irssi with afl was add &lt;code&gt;CC=/path/to/afl/afl-gcc&lt;/code&gt; to the configure script invocation. After building irssi, I started running &lt;code&gt;irssi --config file.cfg&lt;/code&gt; with afl, allowing afl to pass in the configuration file it generates in place of file.cfg. All that can be done by following a guide that covers how to use afl.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;All I had to do to build irssi with afl was add &lt;code&gt;CC=/path/to/afl/afl-gcc&lt;/code&gt; to the configure script invocation. After building irssi, I started running &lt;code&gt;irssi --config file.cfg&lt;/code&gt; with afl, allowing afl to pass in the configuration file it generates in place of file.cfg. All that can be done by following a guide that covers how to use afl.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -51,9 +47,7 @@
       <guid>http://josephbisch.com/post/2015-12-13-new-laptop/</guid>
       <description>&lt;p&gt;I got a new laptop. It is the HP Pavilion 15t. The model number is 15t-ab100 and the SKU is L8V46AV.&lt;/p&gt;
 
-&lt;p&gt;I got the i5 processor with 8 GB RAM and 1 TB HDD. It was a big upgrade over my old laptop, because I had a first gen i3 in the old one and this has a Skylake processor.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;I got the i5 processor with 8 GB RAM and 1 TB HDD. It was a big upgrade over my old laptop, because I had a first gen i3 in the old one and this has a Skylake processor.&lt;/p&gt;</description>
     </item>
     
   </channel>

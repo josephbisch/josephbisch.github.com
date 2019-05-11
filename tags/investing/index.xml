@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Investing on Joseph Bisch</title>
+    <title>investing on Joseph Bisch</title>
     <link>http://josephbisch.com/tags/investing/</link>
-    <description>Recent content in Investing on Joseph Bisch</description>
+    <description>Recent content in investing on Joseph Bisch</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 14 Apr 2018 08:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Sat, 11 May 2019 07:36:00 -0400</lastBuildDate>
     
 	<atom:link href="http://josephbisch.com/tags/investing/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Compound Interest - Increasing Salary/Contributions</title>
+      <link>http://josephbisch.com/post/2019-05-11-compound-interest/</link>
+      <pubDate>Sat, 11 May 2019 07:36:00 -0400</pubDate>
+      
+      <guid>http://josephbisch.com/post/2019-05-11-compound-interest/</guid>
+      <description>I couldn&amp;rsquo;t find a spreadsheet to do compound interest and retirement calculations with increasing contributions (i.e. to account for salary increases over time). There are online calculators that do so, but I wanted it in spreadsheet form, so I could add to it.
+So I made the following spreadsheet that compares the difference that a certain yearly salary increase makes on the value of your portfolio and on the amount of income you can draw from that portfolio based on a certain withdrawal rate.</description>
+    </item>
     
     <item>
       <title>Angel Investing - April Update</title>

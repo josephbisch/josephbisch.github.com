@@ -6,10 +6,20 @@
     <description>Recent content in Posts on Joseph Bisch</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 14 Apr 2018 08:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Sat, 11 May 2019 07:36:00 -0400</lastBuildDate>
     
 	<atom:link href="http://josephbisch.com/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Compound Interest - Increasing Salary/Contributions</title>
+      <link>http://josephbisch.com/post/2019-05-11-compound-interest/</link>
+      <pubDate>Sat, 11 May 2019 07:36:00 -0400</pubDate>
+      
+      <guid>http://josephbisch.com/post/2019-05-11-compound-interest/</guid>
+      <description>I couldn&amp;rsquo;t find a spreadsheet to do compound interest and retirement calculations with increasing contributions (i.e. to account for salary increases over time). There are online calculators that do so, but I wanted it in spreadsheet form, so I could add to it.
+So I made the following spreadsheet that compares the difference that a certain yearly salary increase makes on the value of your portfolio and on the amount of income you can draw from that portfolio based on a certain withdrawal rate.</description>
+    </item>
     
     <item>
       <title>Angel Investing - April Update</title>
@@ -57,9 +67,7 @@ CVE-2017-14727 in Weechat From the Weechat security page:
 
 &lt;h2 id=&#34;investigation-of-the-bug&#34;&gt;Investigation of the Bug&lt;/h2&gt;
 
-&lt;p&gt;The bug was reproducible using &lt;code&gt;printf &amp;quot;select * from routes where destination ;VACUUM &#39;::1&#39;;\n&amp;quot; | osqueryi&lt;/code&gt;. Using osquery binaries compiled with &lt;a href=&#34;https://en.wikipedia.org/wiki/AddressSanitizer&#34;&gt;ASan&lt;/a&gt;, I got a heap-use-after-free report when running the osqueryi program as demonstrated in the previous sentence.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;The bug was reproducible using &lt;code&gt;printf &amp;quot;select * from routes where destination ;VACUUM &#39;::1&#39;;\n&amp;quot; | osqueryi&lt;/code&gt;. Using osquery binaries compiled with &lt;a href=&#34;https://en.wikipedia.org/wiki/AddressSanitizer&#34;&gt;ASan&lt;/a&gt;, I got a heap-use-after-free report when running the osqueryi program as demonstrated in the previous sentence.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -72,9 +80,7 @@ CVE-2017-14727 in Weechat From the Weechat security page:
 
 &lt;p&gt;While fuzzing irssi&amp;rsquo;s config file parser using afl, I encountered a bug that I reported and became &lt;a href=&#34;https://github.com/irssi/irssi/issues/563&#34;&gt;issue #563&lt;/a&gt; for irssi on GitHub. I am going to perform an analysis of the bug and my solution to the bug.&lt;/p&gt;
 
-&lt;p&gt;All I had to do to build irssi with afl was add &lt;code&gt;CC=/path/to/afl/afl-gcc&lt;/code&gt; to the configure script invocation. After building irssi, I started running &lt;code&gt;irssi --config file.cfg&lt;/code&gt; with afl, allowing afl to pass in the configuration file it generates in place of file.cfg. All that can be done by following a guide that covers how to use afl.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;All I had to do to build irssi with afl was add &lt;code&gt;CC=/path/to/afl/afl-gcc&lt;/code&gt; to the configure script invocation. After building irssi, I started running &lt;code&gt;irssi --config file.cfg&lt;/code&gt; with afl, allowing afl to pass in the configuration file it generates in place of file.cfg. All that can be done by following a guide that covers how to use afl.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -85,9 +91,7 @@ CVE-2017-14727 in Weechat From the Weechat security page:
       <guid>http://josephbisch.com/post/2015-12-13-new-laptop/</guid>
       <description>&lt;p&gt;I got a new laptop. It is the HP Pavilion 15t. The model number is 15t-ab100 and the SKU is L8V46AV.&lt;/p&gt;
 
-&lt;p&gt;I got the i5 processor with 8 GB RAM and 1 TB HDD. It was a big upgrade over my old laptop, because I had a first gen i3 in the old one and this has a Skylake processor.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;I got the i5 processor with 8 GB RAM and 1 TB HDD. It was a big upgrade over my old laptop, because I had a first gen i3 in the old one and this has a Skylake processor.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -98,9 +102,7 @@ CVE-2017-14727 in Weechat From the Weechat security page:
       <guid>http://josephbisch.com/post/2014-12-15-namecoin-block-format/</guid>
       <description>&lt;p&gt;This article assumes familiarity with the Bitcoin block format.&lt;/p&gt;
 
-&lt;p&gt;Namecoin blocks starting with block 19200 may have some extra data in them. These blocks with extra data are called AuxPOW blocks for Auxiliary Proof of Work. The extra data appears between the nonce and txn_count. This extra data appears when a block has been merged-mined for both the Bitcoin and Namecoin networks.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;Namecoin blocks starting with block 19200 may have some extra data in them. These blocks with extra data are called AuxPOW blocks for Auxiliary Proof of Work. The extra data appears between the nonce and txn_count. This extra data appears when a block has been merged-mined for both the Bitcoin and Namecoin networks.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -111,9 +113,7 @@ CVE-2017-14727 in Weechat From the Weechat security page:
       <guid>http://josephbisch.com/post/2014-11-23-installing-and-running-nmcontrol/</guid>
       <description>&lt;p&gt;I recently installed the program nmcontrol. Doing so was non-trivial, so I am documenting the process I took here.&lt;/p&gt;
 
-&lt;p&gt;For those that don&amp;rsquo;t know, nmcontrol is a daemon that communicates with namecoind and provides services. In particular, I wanted to use the DNS service it provides for accessing .bit domain names. The .bit TLD is used by Namecoin. Namecoin is a decentalized key-value store and among its uses is decentalized DNS.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;For those that don&amp;rsquo;t know, nmcontrol is a daemon that communicates with namecoind and provides services. In particular, I wanted to use the DNS service it provides for accessing .bit domain names. The .bit TLD is used by Namecoin. Namecoin is a decentalized key-value store and among its uses is decentalized DNS.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -122,9 +122,7 @@ CVE-2017-14727 in Weechat From the Weechat security page:
       <pubDate>Thu, 04 Sep 2014 10:14:00 -0400</pubDate>
       
       <guid>http://josephbisch.com/post/2014-09-04-my-first-package/</guid>
-      <description>&lt;p&gt;I got my first package uploaded to Debian this week. That package is winetricks. It was orphaned and I adopted it. Now the lastest version (0.0+20140818+svn1202) is available in sid and should migrate to testing in nine days.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;I got my first package uploaded to Debian this week. That package is winetricks. It was orphaned and I adopted it. Now the lastest version (0.0+20140818+svn1202) is available in sid and should migrate to testing in nine days.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -135,9 +133,7 @@ CVE-2017-14727 in Weechat From the Weechat security page:
       <guid>http://josephbisch.com/post/2014-09-01-debconf-wrapup/</guid>
       <description>&lt;p&gt;Debconf14 was the first Debconf I attended. It was an awesome experience.&lt;/p&gt;
 
-&lt;p&gt;Debconf14 started with a Meet and Greet before the Welcome Talk. I got to meet people and find out what they do for Debian. I also got to meet other GSoC students that I had only previously interacted with online. During the Meet and Greet I also met one of my mentors for GSoC, Zack. Later in the conference I met another of my mentors, Piotr. Previously I only interacted with Zack and Piotr online.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;Debconf14 started with a Meet and Greet before the Welcome Talk. I got to meet people and find out what they do for Debian. I also got to meet other GSoC students that I had only previously interacted with online. During the Meet and Greet I also met one of my mentors for GSoC, Zack. Later in the conference I met another of my mentors, Piotr. Previously I only interacted with Zack and Piotr online.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -148,9 +144,7 @@ CVE-2017-14727 in Weechat From the Weechat security page:
       <guid>http://josephbisch.com/post/2014-07-11-gsoc-update-1/</guid>
       <description>&lt;p&gt;It has been a couple of months since my last GSoC update and a lot has happened since then.&lt;/p&gt;
 
-&lt;p&gt;You can &lt;a href=&#34;http://metrics.debian.net&#34;&gt;view the web interface at metrics.debian.net&lt;/a&gt;. There is a dynamic interface viewable with JavaScript enabled, and a static interface viewable with JS disabled. I am currently working on the dynamic interface.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;You can &lt;a href=&#34;http://metrics.debian.net&#34;&gt;view the web interface at metrics.debian.net&lt;/a&gt;. There is a dynamic interface viewable with JavaScript enabled, and a static interface viewable with JS disabled. I am currently working on the dynamic interface.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -159,9 +153,7 @@ CVE-2017-14727 in Weechat From the Weechat security page:
       <pubDate>Thu, 01 May 2014 00:00:00 +0000</pubDate>
       
       <guid>http://josephbisch.com/post/2014-05-01-gsoc-welcome-package-received/</guid>
-      <description>&lt;p&gt;A couple days ago I received my welcome package from Google. The welcome package included a pen and a notepad that has stickers.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;A couple days ago I received my welcome package from Google. The welcome package included a pen and a notepad that has stickers.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -170,9 +162,7 @@ CVE-2017-14727 in Weechat From the Weechat security page:
       <pubDate>Tue, 22 Apr 2014 00:00:00 +0000</pubDate>
       
       <guid>http://josephbisch.com/post/2014-04-22-a-summer-of-code/</guid>
-      <description>&lt;p&gt;Yesterday I found out that I was accepted into the Google Summer of Code program. I was accepted by Debian and will be working on a Metrics Portal. You can &lt;a href=&#34;http://bits.debian.org/2014/04/welcome-gsoc-students-2014.html&#34;&gt;view the announcement on the Debian blog&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;Yesterday I found out that I was accepted into the Google Summer of Code program. I was accepted by Debian and will be working on a Metrics Portal. You can &lt;a href=&#34;http://bits.debian.org/2014/04/welcome-gsoc-students-2014.html&#34;&gt;view the announcement on the Debian blog&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     
   </channel>

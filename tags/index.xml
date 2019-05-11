@@ -6,22 +6,31 @@
     <description>Recent content in Tags on Joseph Bisch</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 02 Dec 2016 13:20:00 -0500</lastBuildDate>
+    <lastBuildDate>Sat, 11 May 2019 07:36:00 -0400</lastBuildDate>
     
 	<atom:link href="http://josephbisch.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Afl</title>
-      <link>http://josephbisch.com/tags/afl/</link>
-      <pubDate>Fri, 02 Dec 2016 13:20:00 -0500</pubDate>
+      <title>finance</title>
+      <link>http://josephbisch.com/tags/finance/</link>
+      <pubDate>Sat, 11 May 2019 07:36:00 -0400</pubDate>
       
-      <guid>http://josephbisch.com/tags/afl/</guid>
+      <guid>http://josephbisch.com/tags/finance/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Angel Investing</title>
+      <title>investing</title>
+      <link>http://josephbisch.com/tags/investing/</link>
+      <pubDate>Sat, 11 May 2019 07:36:00 -0400</pubDate>
+      
+      <guid>http://josephbisch.com/tags/investing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>angel investing</title>
       <link>http://josephbisch.com/tags/angel-investing/</link>
       <pubDate>Sat, 14 Apr 2018 08:00:00 -0400</pubDate>
       
@@ -30,43 +39,7 @@
     </item>
     
     <item>
-      <title>Arch</title>
-      <link>http://josephbisch.com/tags/arch/</link>
-      <pubDate>Sun, 13 Dec 2015 20:23:00 -0500</pubDate>
-      
-      <guid>http://josephbisch.com/tags/arch/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Cryptocurrency</title>
-      <link>http://josephbisch.com/tags/cryptocurrency/</link>
-      <pubDate>Mon, 15 Dec 2014 07:25:00 -0500</pubDate>
-      
-      <guid>http://josephbisch.com/tags/cryptocurrency/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Debian</title>
-      <link>http://josephbisch.com/tags/debian/</link>
-      <pubDate>Thu, 04 Sep 2014 10:14:00 -0400</pubDate>
-      
-      <guid>http://josephbisch.com/tags/debian/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Debian Soc</title>
-      <link>http://josephbisch.com/tags/debian-soc/</link>
-      <pubDate>Mon, 01 Sep 2014 14:02:00 -0400</pubDate>
-      
-      <guid>http://josephbisch.com/tags/debian-soc/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Fuzzing</title>
+      <title>fuzzing</title>
       <link>http://josephbisch.com/tags/fuzzing/</link>
       <pubDate>Sun, 01 Oct 2017 19:40:00 -0400</pubDate>
       
@@ -75,25 +48,7 @@
     </item>
     
     <item>
-      <title>Github</title>
-      <link>http://josephbisch.com/tags/github/</link>
-      <pubDate>Sun, 30 Oct 2016 17:20:00 -0400</pubDate>
-      
-      <guid>http://josephbisch.com/tags/github/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Investing</title>
-      <link>http://josephbisch.com/tags/investing/</link>
-      <pubDate>Sat, 14 Apr 2018 08:00:00 -0400</pubDate>
-      
-      <guid>http://josephbisch.com/tags/investing/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Irc</title>
+      <title>irc</title>
       <link>http://josephbisch.com/tags/irc/</link>
       <pubDate>Sun, 01 Oct 2017 19:40:00 -0400</pubDate>
       
@@ -102,25 +57,16 @@
     </item>
     
     <item>
-      <title>Irssi</title>
-      <link>http://josephbisch.com/tags/irssi/</link>
-      <pubDate>Sun, 30 Oct 2016 17:20:00 -0400</pubDate>
+      <title>afl</title>
+      <link>http://josephbisch.com/tags/afl/</link>
+      <pubDate>Fri, 02 Dec 2016 13:20:00 -0500</pubDate>
       
-      <guid>http://josephbisch.com/tags/irssi/</guid>
+      <guid>http://josephbisch.com/tags/afl/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Laptops</title>
-      <link>http://josephbisch.com/tags/laptops/</link>
-      <pubDate>Sun, 13 Dec 2015 20:23:00 -0500</pubDate>
-      
-      <guid>http://josephbisch.com/tags/laptops/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Linux</title>
+      <title>linux</title>
       <link>http://josephbisch.com/tags/linux/</link>
       <pubDate>Fri, 02 Dec 2016 13:20:00 -0500</pubDate>
       
@@ -129,16 +75,7 @@
     </item>
     
     <item>
-      <title>Namecoin</title>
-      <link>http://josephbisch.com/tags/namecoin/</link>
-      <pubDate>Mon, 15 Dec 2014 07:25:00 -0500</pubDate>
-      
-      <guid>http://josephbisch.com/tags/namecoin/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Osquery</title>
+      <title>osquery</title>
       <link>http://josephbisch.com/tags/osquery/</link>
       <pubDate>Fri, 02 Dec 2016 13:20:00 -0500</pubDate>
       
@@ -147,11 +84,83 @@
     </item>
     
     <item>
-      <title>Sqlite</title>
+      <title>sqlite</title>
       <link>http://josephbisch.com/tags/sqlite/</link>
       <pubDate>Fri, 02 Dec 2016 13:20:00 -0500</pubDate>
       
       <guid>http://josephbisch.com/tags/sqlite/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>github</title>
+      <link>http://josephbisch.com/tags/github/</link>
+      <pubDate>Sun, 30 Oct 2016 17:20:00 -0400</pubDate>
+      
+      <guid>http://josephbisch.com/tags/github/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>irssi</title>
+      <link>http://josephbisch.com/tags/irssi/</link>
+      <pubDate>Sun, 30 Oct 2016 17:20:00 -0400</pubDate>
+      
+      <guid>http://josephbisch.com/tags/irssi/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>arch</title>
+      <link>http://josephbisch.com/tags/arch/</link>
+      <pubDate>Sun, 13 Dec 2015 20:23:00 -0500</pubDate>
+      
+      <guid>http://josephbisch.com/tags/arch/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>laptops</title>
+      <link>http://josephbisch.com/tags/laptops/</link>
+      <pubDate>Sun, 13 Dec 2015 20:23:00 -0500</pubDate>
+      
+      <guid>http://josephbisch.com/tags/laptops/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cryptocurrency</title>
+      <link>http://josephbisch.com/tags/cryptocurrency/</link>
+      <pubDate>Mon, 15 Dec 2014 07:25:00 -0500</pubDate>
+      
+      <guid>http://josephbisch.com/tags/cryptocurrency/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>namecoin</title>
+      <link>http://josephbisch.com/tags/namecoin/</link>
+      <pubDate>Mon, 15 Dec 2014 07:25:00 -0500</pubDate>
+      
+      <guid>http://josephbisch.com/tags/namecoin/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>debian</title>
+      <link>http://josephbisch.com/tags/debian/</link>
+      <pubDate>Thu, 04 Sep 2014 10:14:00 -0400</pubDate>
+      
+      <guid>http://josephbisch.com/tags/debian/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>debian-soc</title>
+      <link>http://josephbisch.com/tags/debian-soc/</link>
+      <pubDate>Mon, 01 Sep 2014 14:02:00 -0400</pubDate>
+      
+      <guid>http://josephbisch.com/tags/debian-soc/</guid>
       <description></description>
     </item>
     

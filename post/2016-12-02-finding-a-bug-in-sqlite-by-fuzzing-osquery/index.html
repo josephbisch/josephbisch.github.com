@@ -63,8 +63,6 @@
 
 <p>The bug was reproducible using <code>printf &quot;select * from routes where destination ;VACUUM '::1';\n&quot; | osqueryi</code>. Using osquery binaries compiled with <a href="https://en.wikipedia.org/wiki/AddressSanitizer">ASan</a>, I got a heap-use-after-free report when running the osqueryi program as demonstrated in the previous sentence.</p>
 
-<p></p>
-
 <p>The following is the ASan output:</p>
 
 <pre><code>=================================================================
@@ -182,7 +180,7 @@ Shadow byte legend (one shadow byte represents 8 application bytes):
             <div class="row">
                 <hr>
                 <div class="col-sm-12">
-                    <p>&copy; Joseph Bisch 2018</p>
+                    <p>&copy; Joseph Bisch 2019</p>
                 </div>
             </div>
         </footer>

@@ -59,8 +59,6 @@
 
 <p>You can <a href="http://metrics.debian.net">view the web interface at metrics.debian.net</a>. There is a dynamic interface viewable with JavaScript enabled, and a static interface viewable with JS disabled. I am currently working on the dynamic interface.</p>
 
-<p></p>
-
 <p>In the weeks since my last blog post I have accomplished a lot. There is support for pull and push metrics. Pull metrics run on the debmetrics server and pull data from some source. Push metrics run on a remote server and push data to the debmetrics server via HTTP POST. There is flask code and the static interface portion uses a general route, so that the flask code does not need to be modified every time a metric is added. There is a makefile that runs manifest2index.py and manifest2orm.py to generate the index page of the web interface and the SQLAlchemy model code respectively. I have a config file that allows the user to set the location of the manifest, pull_scripts, and graph_scripts directories. I have a debmetrics.wsgi file for easy deployment of debmetrics.</p>
 
 <p>There is a single layout.html that is the base layout for all the other pages.</p>
@@ -107,7 +105,7 @@
             <div class="row">
                 <hr>
                 <div class="col-sm-12">
-                    <p>&copy; Joseph Bisch 2018</p>
+                    <p>&copy; Joseph Bisch 2019</p>
                 </div>
             </div>
         </footer>

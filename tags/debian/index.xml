@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Debian on Joseph Bisch</title>
+    <title>debian on Joseph Bisch</title>
     <link>http://josephbisch.com/tags/debian/</link>
-    <description>Recent content in Debian on Joseph Bisch</description>
+    <description>Recent content in debian on Joseph Bisch</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 04 Sep 2014 10:14:00 -0400</lastBuildDate>
@@ -17,9 +17,7 @@
       <pubDate>Thu, 04 Sep 2014 10:14:00 -0400</pubDate>
       
       <guid>http://josephbisch.com/post/2014-09-04-my-first-package/</guid>
-      <description>&lt;p&gt;I got my first package uploaded to Debian this week. That package is winetricks. It was orphaned and I adopted it. Now the lastest version (0.0+20140818+svn1202) is available in sid and should migrate to testing in nine days.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;I got my first package uploaded to Debian this week. That package is winetricks. It was orphaned and I adopted it. Now the lastest version (0.0+20140818+svn1202) is available in sid and should migrate to testing in nine days.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -30,9 +28,7 @@
       <guid>http://josephbisch.com/post/2014-09-01-debconf-wrapup/</guid>
       <description>&lt;p&gt;Debconf14 was the first Debconf I attended. It was an awesome experience.&lt;/p&gt;
 
-&lt;p&gt;Debconf14 started with a Meet and Greet before the Welcome Talk. I got to meet people and find out what they do for Debian. I also got to meet other GSoC students that I had only previously interacted with online. During the Meet and Greet I also met one of my mentors for GSoC, Zack. Later in the conference I met another of my mentors, Piotr. Previously I only interacted with Zack and Piotr online.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;Debconf14 started with a Meet and Greet before the Welcome Talk. I got to meet people and find out what they do for Debian. I also got to meet other GSoC students that I had only previously interacted with online. During the Meet and Greet I also met one of my mentors for GSoC, Zack. Later in the conference I met another of my mentors, Piotr. Previously I only interacted with Zack and Piotr online.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -43,9 +39,7 @@
       <guid>http://josephbisch.com/post/2014-07-11-gsoc-update-1/</guid>
       <description>&lt;p&gt;It has been a couple of months since my last GSoC update and a lot has happened since then.&lt;/p&gt;
 
-&lt;p&gt;You can &lt;a href=&#34;http://metrics.debian.net&#34;&gt;view the web interface at metrics.debian.net&lt;/a&gt;. There is a dynamic interface viewable with JavaScript enabled, and a static interface viewable with JS disabled. I am currently working on the dynamic interface.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;You can &lt;a href=&#34;http://metrics.debian.net&#34;&gt;view the web interface at metrics.debian.net&lt;/a&gt;. There is a dynamic interface viewable with JavaScript enabled, and a static interface viewable with JS disabled. I am currently working on the dynamic interface.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -54,9 +48,7 @@
       <pubDate>Thu, 01 May 2014 00:00:00 +0000</pubDate>
       
       <guid>http://josephbisch.com/post/2014-05-01-gsoc-welcome-package-received/</guid>
-      <description>&lt;p&gt;A couple days ago I received my welcome package from Google. The welcome package included a pen and a notepad that has stickers.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;A couple days ago I received my welcome package from Google. The welcome package included a pen and a notepad that has stickers.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -65,9 +57,7 @@
       <pubDate>Tue, 22 Apr 2014 00:00:00 +0000</pubDate>
       
       <guid>http://josephbisch.com/post/2014-04-22-a-summer-of-code/</guid>
-      <description>&lt;p&gt;Yesterday I found out that I was accepted into the Google Summer of Code program. I was accepted by Debian and will be working on a Metrics Portal. You can &lt;a href=&#34;http://bits.debian.org/2014/04/welcome-gsoc-students-2014.html&#34;&gt;view the announcement on the Debian blog&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;Yesterday I found out that I was accepted into the Google Summer of Code program. I was accepted by Debian and will be working on a Metrics Portal. You can &lt;a href=&#34;http://bits.debian.org/2014/04/welcome-gsoc-students-2014.html&#34;&gt;view the announcement on the Debian blog&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     
   </channel>

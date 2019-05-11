@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Sqlite on Joseph Bisch</title>
+    <title>sqlite on Joseph Bisch</title>
     <link>http://josephbisch.com/tags/sqlite/</link>
-    <description>Recent content in Sqlite on Joseph Bisch</description>
+    <description>Recent content in sqlite on Joseph Bisch</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 02 Dec 2016 13:20:00 -0500</lastBuildDate>
@@ -23,9 +23,7 @@
 
 &lt;h2 id=&#34;investigation-of-the-bug&#34;&gt;Investigation of the Bug&lt;/h2&gt;
 
-&lt;p&gt;The bug was reproducible using &lt;code&gt;printf &amp;quot;select * from routes where destination ;VACUUM &#39;::1&#39;;\n&amp;quot; | osqueryi&lt;/code&gt;. Using osquery binaries compiled with &lt;a href=&#34;https://en.wikipedia.org/wiki/AddressSanitizer&#34;&gt;ASan&lt;/a&gt;, I got a heap-use-after-free report when running the osqueryi program as demonstrated in the previous sentence.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;The bug was reproducible using &lt;code&gt;printf &amp;quot;select * from routes where destination ;VACUUM &#39;::1&#39;;\n&amp;quot; | osqueryi&lt;/code&gt;. Using osquery binaries compiled with &lt;a href=&#34;https://en.wikipedia.org/wiki/AddressSanitizer&#34;&gt;ASan&lt;/a&gt;, I got a heap-use-after-free report when running the osqueryi program as demonstrated in the previous sentence.&lt;/p&gt;</description>
     </item>
     
   </channel>

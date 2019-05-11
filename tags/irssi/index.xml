@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Irssi on Joseph Bisch</title>
+    <title>irssi on Joseph Bisch</title>
     <link>http://josephbisch.com/tags/irssi/</link>
-    <description>Recent content in Irssi on Joseph Bisch</description>
+    <description>Recent content in irssi on Joseph Bisch</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 30 Oct 2016 17:20:00 -0400</lastBuildDate>
@@ -21,9 +21,7 @@
 
 &lt;p&gt;While fuzzing irssi&amp;rsquo;s config file parser using afl, I encountered a bug that I reported and became &lt;a href=&#34;https://github.com/irssi/irssi/issues/563&#34;&gt;issue #563&lt;/a&gt; for irssi on GitHub. I am going to perform an analysis of the bug and my solution to the bug.&lt;/p&gt;
 
-&lt;p&gt;All I had to do to build irssi with afl was add &lt;code&gt;CC=/path/to/afl/afl-gcc&lt;/code&gt; to the configure script invocation. After building irssi, I started running &lt;code&gt;irssi --config file.cfg&lt;/code&gt; with afl, allowing afl to pass in the configuration file it generates in place of file.cfg. All that can be done by following a guide that covers how to use afl.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;All I had to do to build irssi with afl was add &lt;code&gt;CC=/path/to/afl/afl-gcc&lt;/code&gt; to the configure script invocation. After building irssi, I started running &lt;code&gt;irssi --config file.cfg&lt;/code&gt; with afl, allowing afl to pass in the configuration file it generates in place of file.cfg. All that can be done by following a guide that covers how to use afl.&lt;/p&gt;</description>
     </item>
     
   </channel>

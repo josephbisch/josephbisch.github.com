@@ -9,8 +9,8 @@
     <meta name="author" content="Joseph Bisch">
 
 
-    <title>Namecoin Block Format - http://josephbisch.com/</title>
-    <link rel="canonical" href="http://josephbisch.com/post/2014-12-15-namecoin-block-format/">
+    <title>Compound Interest - Increasing Salary/Contributions - http://josephbisch.com/</title>
+    <link rel="canonical" href="http://josephbisch.com/post/2019-05-11-compound-interest/">
     
     <link href="http://josephbisch.com/css/bootstrap.min.css" rel="stylesheet">
     <link href="http://josephbisch.com/css/font-awesome.css" rel="stylesheet">
@@ -53,25 +53,26 @@
     <div class="row">
         <div class="col-md-9">
             <div class="well well-sm">
-                    <h3>Namecoin Block Format<br> <small></small></h3>
+                    <h3>Compound Interest - Increasing Salary/Contributions<br> <small></small></h3>
                     <hr>
-                    <p>This article assumes familiarity with the Bitcoin block format.</p>
+                    <p>I couldn&rsquo;t find a spreadsheet to do compound interest and retirement calculations with increasing contributions (i.e. to account for salary increases over time). There are online calculators that do so, but I wanted it in spreadsheet form, so I could add to it.</p>
 
-<p>Namecoin blocks starting with block 19200 may have some extra data in them. These blocks with extra data are called AuxPOW blocks for Auxiliary Proof of Work. The extra data appears between the nonce and txn_count. This extra data appears when a block has been merged-mined for both the Bitcoin and Namecoin networks.</p>
+<p>So I made the following spreadsheet that compares the difference that a certain yearly salary increase makes on the value of your portfolio and on the amount of income you can draw from that portfolio based on a certain withdrawal rate.</p>
 
-<p>It is important to note that a Namecoin block after block 19200 may not be merged-mined, though most are. An important thing to note is that the hash of the block header for an AuxPOW block does not necessarily need to start with leading zeros like a regular block header&rsquo;s hash (and generally it won&rsquo;t start with leading zeros).</p>
+<iframe width="100%" height="400px" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSoFr0FKF906lGDOTd5ryxtPKlGbeNc-a8Yad2Vzqnbhb2GFlY1AvI7u7NMCnO1ku-TthdtvNO7DjCa/pubhtml?widget=true&amp;headers=false"></iframe>
 
-<p>Something that confused me for a while was how to determine whether a block from block 19200 on is merged-mined or not. It turns out that you can use the version in the block header to determine that. If a block is merged-mined, the 0x100 digit will be set. The digit 0x10000 is used to signal that the auxiliary chain being merged-mined is Namecoin.</p>
+<p>Here is <a href="https://docs.google.com/spreadsheets/d/1fZA-Llpy6LH5PCOgtY2Rhhbx11k5oHlWkAbnkADrxks/edit?usp=sharing">a link</a> to the Google Sheet so that you can download it to play with yourself.</p>
 
-<p>For more information including helpful diagrams, see the <a href="https://en.bitcoin.it/wiki/Merged_mining_specification">Bitcoin Wiki page on merged-mining</a>.</p>
+<p>Also, I&rsquo;m currently reading <a href="https://www.amazon.com/gp/product/1589795474/ref=as_li_qf_asin_il_tl?ie=UTF8&amp;tag=josephbisch-20&amp;creative=9325&amp;linkCode=as2&amp;creativeASIN=1589795474&amp;linkId=eec4e616fb1f7e4b5671c365010190c6">&ldquo;The Millionaire Next Door&rdquo;</a>, which is a book I recommend reading if you haven&rsquo;t already.</p>
+
             </div>
         </div>
 
         
         <div class="col-md-3">
             <div class="well well-sm"> 
-                <h4>December 15, 2014<br>
-                <small>198 words</small></h4>
+                <h4>May 11, 2019<br>
+                <small>121 words</small></h4>
                 <hr>
                 <strong>Categories</strong>
                 <ul class="list-unstyled">
@@ -79,7 +80,7 @@
                 </ul>
                 <hr>
                 <strong>Tags</strong><br>
-                <a class="label label-default" href="http://josephbisch.com/tags/namecoin">namecoin</a> <a class="label label-default" href="http://josephbisch.com/tags/cryptocurrency">cryptocurrency</a> 
+                <a class="label label-default" href="http://josephbisch.com/tags/investing">investing</a> <a class="label label-default" href="http://josephbisch.com/tags/finance">finance</a> 
             </div>
                 <div class="panel panel-default">
         <div class="panel-heading" style="padding: 2px 15px;">
